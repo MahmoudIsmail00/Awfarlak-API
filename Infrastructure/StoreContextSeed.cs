@@ -76,6 +76,19 @@ namespace Infrastructure
                         await context.SaveChangesAsync();
                     }
                 }
+                if (context.ProductSpecs != null && !context.ProductSpecs.Any())
+                {
+                    var productSpecsData = File.ReadAllText("../Infrastructure/SeedData/Specs.json");
+                    var productSpecss = JsonSerializer.Deserialize<List<ProductSpecs>>(productSpecsData);
+
+                    if (productSpecss is not null)
+                    {
+                        foreach (var productSpec in productSpecss)
+                            await context.ProductSpecs.AddAsync(productSpec);
+
+                        await context.SaveChangesAsync();
+                    }
+                }
             }
             catch (Exception ex)
             {
