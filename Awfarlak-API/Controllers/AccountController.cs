@@ -1,18 +1,17 @@
-﻿using Core.IdentityEntities;
-using Awfarlak_API.HandleResponses;
+﻿using Awfarlak_API.HandleResponses;
+using Core.IdentityEntities;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Services.Services.TokenService;
 using Services.Services.UserService;
 using Services.Services.UserService.Dto;
 using System.Security.Claims;
 
 namespace Awfarlak_API.Controllers
 {
-
-    public class AccountController : BaseController
+    [Route("api/[controller]/[action]")]
+    [ApiController]
+    public class AccountController : ControllerBase
     {
         private readonly IUserService _userService;
         private readonly UserManager<AppUser> _userManager;

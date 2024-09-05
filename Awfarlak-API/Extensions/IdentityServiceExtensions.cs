@@ -25,7 +25,7 @@ namespace Awfarlak_API.Extensions
                         ValidateIssuerSigningKey = true,
                         IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(_config["Token:Key"])),
                         ValidateIssuer = true,
-                        ValidIssuer = _config["Token:Key"],
+                        ValidIssuer = _config["Token:Issuer"],
                         ValidateAudience = false
                     };
                 });
