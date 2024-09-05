@@ -9,6 +9,5 @@ namespace Services.Services.OrderService
         Task<IReadOnlyList<OrderResultDto>> GetAllOrdersForUserAsync(string buyerEmail);
         Task<OrderResultDto> GetOrderByIdAsync(int id, string buyerEmail);
         Task<IReadOnlyList<DeliveryMethod>> GetAllDeliveryMethodsAsync();
-
     }
 }

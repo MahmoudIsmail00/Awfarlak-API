@@ -1,0 +1,40 @@
+[
+  {   
+    "CPU": "Intel Core i7-7600U",
+    "GPU": "Intel HD 620",
+    "Storage": 256,
+    "RAM": 8,
+    "Screen": "15.6″ FHD",
+    "Color": "Silver",
+    "Keyboard": "Standard",
+    "Warranty": "1 Year",
+    "Panel": "IPS",
+    "Touchscreen": false
+  },
+  {
+   
+    "CPU": "Intel Core i7-8650U",
+    "GPU": "NVIDIA MX130 2GB",
+    "Storage": 256,
+    "RAM": 8,
+    "Screen": "15.6″ HD",
+    "Color": "Black",
+    "Keyboard": "Backlit",
+    "Warranty": "1 Year",
+    "Panel": "TN",
+    "Touchscreen": false
+  },
+  {
+    
+    "CPU": "AMD Ryzen 5 PRO 3500U",
+    "GPU": "AMD Radeon Vega 8",
+    "Storage": 256,
+    "RAM": 8,
+    "Screen": "14″ FHD",
+    "Color": "Silver",
+    "Keyboard": "Standard",
+    "Warranty": "6 Months",
+    "Panel": "IPS",
+    "Touchscreen": false
+  }
+]

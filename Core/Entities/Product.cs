@@ -10,7 +10,6 @@
         public int SubCategoryId { get; set; }
         public ProductBrand ProductBrand { get; set; }
         public int ProductBrandId { get; set; }
-
-
+        public ProductSpecs ProductSpecs { get; set; }
     }
 }
