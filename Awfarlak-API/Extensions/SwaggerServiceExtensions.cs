@@ -36,27 +36,27 @@ namespace Awfarlak_API.Extensions
                 };
 
                 // API Key
-                var apiKeySecurityScheme = new OpenApiSecurityScheme
-                {
-                    Description = $"API Key needed to access the endpoints. {ApiKeyHeaderName}: {ApiKeyHeaderName}",
-                    Name = ApiKeyHeaderName,
-                    In = ParameterLocation.Header,
-                    Type = SecuritySchemeType.ApiKey,
-                    Scheme = ApiKeyHeaderName,
-                    Reference = new OpenApiReference
-                    {
-                        Type = ReferenceType.SecurityScheme,
-                        Id = ApiKeyHeaderName
-                    }
-                };
+                //var apiKeySecurityScheme = new OpenApiSecurityScheme
+                //{
+                //    Description = $"API Key needed to access the endpoints. {ApiKeyHeaderName}: {ApiKeyHeaderName}",
+                //    Name = ApiKeyHeaderName,
+                //    In = ParameterLocation.Header,
+                //    Type = SecuritySchemeType.ApiKey,
+                //    Scheme = ApiKeyHeaderName,
+                //    Reference = new OpenApiReference
+                //    {
+                //        Type = ReferenceType.SecurityScheme,
+                //        Id = ApiKeyHeaderName
+                //    }
+                //};
 
                 c.AddSecurityDefinition(Bearer, jwtSecurityScheme);
-                c.AddSecurityDefinition(ApiKeyHeaderName, apiKeySecurityScheme);
+                //c.AddSecurityDefinition(ApiKeyHeaderName, apiKeySecurityScheme);
 
                 c.AddSecurityRequirement(new OpenApiSecurityRequirement
                 {
-                    { jwtSecurityScheme, new List<string>() },
-                    { apiKeySecurityScheme, new List<string>() }
+                    { jwtSecurityScheme, new List<string>() }
+                    //{ apiKeySecurityScheme, new List<string>() }
                 });
             });
 
