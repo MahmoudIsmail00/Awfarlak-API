@@ -20,6 +20,9 @@ namespace Services.Services.ProductService
         public async Task<IReadOnlyList<ProductBrand>> GetProductBrandsAsync()
             => await _unitOfWork.Repository<ProductBrand>().GetAllAsync();
 
+        public async Task<IReadOnlyList<ProductSpecs>> GetProductSpecsAsync()
+            => await _unitOfWork.Repository<ProductSpecs>().GetAllAsync();
+
         public async Task<ProductResultDto> GetProductByIdAsync(int? id)
         {
             var specs = new ProductsWithTypesAndBrandsSpecifications(id);

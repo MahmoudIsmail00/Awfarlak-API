@@ -15,6 +15,5 @@
         public bool? Touchscreen { get; set; }
 
         public int productId { get; set; }
-        public Product product { get; set; }
     }
 }

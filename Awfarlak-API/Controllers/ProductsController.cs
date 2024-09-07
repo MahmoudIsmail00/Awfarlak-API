@@ -45,6 +45,11 @@ namespace Awfarlak_API.Controllers
         public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProductBrands()
             => Ok(await _productService.GetProductBrandsAsync());
 
+        [HttpGet]
+        [Route("Specs")]
+        public async Task<ActionResult<IReadOnlyList<ProductSpecs>>> GetProductSpecs()
+            => Ok(await _productService.GetProductSpecsAsync());
+
         [HttpGet("Types")]
         public async Task<ActionResult<IReadOnlyList<SubCategory>>> GetProductSubCategories()
             => Ok(await _productService.GetProductSubCategoryAsync());

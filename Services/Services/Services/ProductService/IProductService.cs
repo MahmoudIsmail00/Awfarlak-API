@@ -11,5 +11,7 @@ namespace Services.Services.ProductService
         Task<Pagination<ProductResultDto>> GetProductsAsync(ProductSpecification specification);
         Task<IReadOnlyList<ProductBrand>> GetProductBrandsAsync();
         Task<IReadOnlyList<SubCategory>> GetProductSubCategoryAsync();
+        Task<IReadOnlyList<ProductSpecs>> GetProductSpecsAsync();
+
     }
 }

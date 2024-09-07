@@ -13,6 +13,8 @@ namespace Infrastructure.Interfaces
         Task<IReadOnlyList<Product>> GetProductsAsync();
         Task<IReadOnlyList<ProductBrand>> GetProductBrandsAsync();
         Task<IReadOnlyList<SubCategory>> GetProductSubCategoryAsync();
+        Task<IReadOnlyList<ProductSpecs>> GetProductSpecsAsync();
+
 
 
     }
