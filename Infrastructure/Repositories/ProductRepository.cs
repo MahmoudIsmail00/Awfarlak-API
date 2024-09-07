@@ -32,5 +32,8 @@ namespace Infrastructure.Repositories
         public async Task<IReadOnlyList<SubCategory>> GetProductSubCategoryAsync()
             => await _context.Set<SubCategory>().ToListAsync();
 
+        public async Task<IReadOnlyList<ProductSpecs>> GetProductSpecsAsync()
+            => await _context.Set<ProductSpecs>().ToListAsync();
+
     }
 }
