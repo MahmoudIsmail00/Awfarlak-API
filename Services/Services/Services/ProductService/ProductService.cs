@@ -42,6 +42,21 @@ namespace Services.Services.ProductService
 
             return new Pagination<ProductResultDto>(specification.PageIndex, specification.PageSize, totalItems, mappedProducts);
         }
+
+        ////////////////////////////////////////products by sub category//////////////////////////////////////
+        
+        public async Task<IReadOnlyList<ProductResultDto>> GetProductsBySubCategory(int? subCategoryId)
+        {
+            var specs = new ProductsBySubCategorySpecification(x => x.SubCategoryId == subCategoryId , y=>y.ProductBrand , z=> z.SubCategory);
+
+            var products = await _unitOfWork.Repository<Product>().GetAllWithSpecificationsAsync(specs);
+
+            var mappedProducts = _mapper.Map<IReadOnlyList<ProductResultDto>>(products);
+
+            return mappedProducts;
+        }
+
+        //////////////////////////////////////////////////////////////////////////////////////////////
         public async Task<IReadOnlyList<SubCategory>> GetProductSubCategoryAsync()
             => await _unitOfWork.Repository<SubCategory>().GetAllAsync();
 

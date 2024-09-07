@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 using Services.Helpers;
 using Services.Services.ProductService;
 using Services.Services.ProductService.Dto;
+using Core;
 
 namespace Awfarlak_API.Controllers
 {
@@ -13,9 +14,11 @@ namespace Awfarlak_API.Controllers
     {
         private readonly IProductService _productService;
 
+
         public ProductsController(IProductService productService)
         {
             _productService = productService;
+
         }
 
         [HttpGet]
@@ -25,7 +28,13 @@ namespace Awfarlak_API.Controllers
 
             return Ok(products);
         }
+        [HttpGet("{subCategory}")]
+        public async Task<ActionResult<IReadOnlyList<Product>>> GetProductsBySubCat(int subCategory)
+        {
+            var products = await _productService.GetProductsBySubCategory(subCategory);
 
+            return Ok(products);
+        }
 
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]

@@ -41,5 +41,6 @@ namespace Infrastructure.Repositories
 
         public async Task<int> CountAsync(ISpecifications<T> specifications)
             => await ApplySpecifications(specifications).CountAsync();
+
     }
 }
