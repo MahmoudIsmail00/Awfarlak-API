@@ -1,74 +1,98 @@
 [
   {
-    "Name": "ProBook 650 G3",
-    "Description": "HP ProBook 650 G3 Business Laptop 15.6″ FHD, Intel Core i7-7600U, Intel HD 620, 8GB RAM, 256GB (Used: Grade A)",
-    "Price": 9000,
-    "PictureUrl": "/images/products/ProBook-650-G3.jpg",
-    "SubCategoryId": 1,
-    "ProductBrandId": 1
-  },
-  {
-    "Name": "Dell Latitude 5590",
-    "Description": "Dell Latitude 5590 Business Laptop 15.6″ HD, Intel Core i7-8650U, NVIDIA MX130 2GB, 8GB RAM, 256GB (Used: Grade A)",
-    "Price": 14000,
-    "PictureUrl": "/images/products/Dell-Latitude-5590.jpg",
+    "Name": "Dell Inspiron 3501",
+    "Description": "Dell Inspiron 3501 Laptop 15.6″ HD, Intel Core i3-1005G1, Intel Iris Plus G1, 4GB RAM, 128GB (Used: Grade A)",
+    "Price": 13500,
+    "PictureUrl": "/images/standard/DELL_KWNWX_INT_15.jpg",
     "SubCategoryId": 1,
     "ProductBrandId": 4
   },
   {
-    "Name": "Hp EliteBook 745 G6",
-    "Description": "HP EliteBook 745 G6 Business Laptop 14″ FHD, AMD Ryzen 5 PRO 3500U, AMD Radeon Vega 8, 8GB RAM, 256GB (Used: Grade B)",
-    "Price": 12500,
-    "PictureUrl": "/images/products/Hp-EliteBook-745-G6.jpg",
-    "SubCategoryId": 1,
-    "ProductBrandId": 1
-  },
-  {
-    "Name": "ProBook 650 G3",
-    "Description": "HP ProBook 650 G3 Business Laptop 15.6″ FHD, Intel Core i7-7600U, Intel HD 620, 8GB RAM, 256GB (Used: Grade A)",
-    "Price": 9000,
-    "PictureUrl": "/images/products/ProBook-650-G3.jpg",
-    "SubCategoryId": 1,
-    "ProductBrandId": 1
-  },
-  {
-    "Name": "Dell Latitude 5590",
-    "Description": "Dell Latitude 5590 Business Laptop 15.6″ HD, Intel Core i7-8650U, NVIDIA MX130 2GB, 8GB RAM, 256GB (Used: Grade A)",
+    "Name": "Dell Inspiron 3501",
+    "Description": "Dell Inspiron 3501 Laptop 15.6″ HD, Intel Core i3-1005G1, Intel Iris Plus G1, 4GB RAM, 1TB (Used: Grade A)",
     "Price": 14000,
-    "PictureUrl": "/images/products/Dell-Latitude-5590.jpg",
+    "PictureUrl": "/images/standard/DELL_KWNWX_INT_15.jpg",
     "SubCategoryId": 1,
     "ProductBrandId": 4
   },
   {
-    "Name": "Hp EliteBook 745 G6",
-    "Description": "HP EliteBook 745 G6 Business Laptop 14″ FHD, AMD Ryzen 5 PRO 3500U, AMD Radeon Vega 8, 8GB RAM, 256GB (Used: Grade B)",
-    "Price": 12500,
-    "PictureUrl": "/images/products/Hp-EliteBook-745-G6.jpg",
-    "SubCategoryId": 1,
-    "ProductBrandId": 1
-  },
-  {
-    "Name": "ProBook 650 G3",
-    "Description": "HP ProBook 650 G3 Business Laptop 15.6″ FHD, Intel Core i7-7600U, Intel HD 620, 8GB RAM, 256GB (Used: Grade A)",
-    "Price": 9000,
-    "PictureUrl": "/images/products/ProBook-650-G3.jpg",
-    "SubCategoryId": 1,
-    "ProductBrandId": 1
-  },
-  {
-    "Name": "Dell Latitude 5590",
-    "Description": "Dell Latitude 5590 Business Laptop 15.6″ HD, Intel Core i7-8650U, NVIDIA MX130 2GB, 8GB RAM, 256GB (Used: Grade A)",
-    "Price": 14000,
-    "PictureUrl": "/images/products/Dell-Latitude-5590.jpg",
-    "SubCategoryId": 1,
+    "Name": "Dell Latitude 7390 2-in-1",
+    "Description": "Dell Latitude 7390 2-in-1 Laptop 13.3″ FHD Touchscreen, Intel Core i7-8650U, Intel UHD 620, 16GB RAM, 256GB (Used: Grade B)",
+    "Price": 10250,
+    "PictureUrl": "/images/2 in 1/DELL_7390_2in1-3461_INT_8.jpg",
+    "SubCategoryId": 2,
     "ProductBrandId": 4
   },
   {
-    "Name": "Hp EliteBook 745 G6",
-    "Description": "HP EliteBook 745 G6 Business Laptop 14″ FHD, AMD Ryzen 5 PRO 3500U, AMD Radeon Vega 8, 8GB RAM, 256GB (Used: Grade B)",
-    "Price": 12500,
-    "PictureUrl": "/images/products/Hp-EliteBook-745-G6.jpg",
-    "SubCategoryId": 1,
+    "Name": "Dell Inspiron 14 5410 2-in-1",
+    "Description": "Dell Inspiron 14 5410 2-in-1 Laptop 14″ FHD Touchscreen, Intel Core i7-1195G7, NVIDIA MX350 2GB, 16GB RAM, 512GB, Platinum Silver (New)",
+    "Price": 49500,
+    "PictureUrl": "/images/2 in 1/DELL_657W9_INT_18.jpg",
+    "SubCategoryId": 2,
+    "ProductBrandId": 4
+  },
+  {
+    "Name": "Microsoft Surface Pro 7 Plus",
+    "Description": "Microsoft Surface Pro 7 Plus Tablet 12.3″ 3K IPS Touchscreen, Intel Core i5-1135G7, Intel Iris Xe, 8GB RAM, 256GB, Platinum (New)",
+    "Price": 50500,
+    "PictureUrl": "/images/2 in 1/2-1.jpg",
+    "SubCategoryId": 2,
+    "ProductBrandId": 5
+  },
+  {
+    "Name": "Lenovo Ideapad Gaming 3",
+    "Description": "Lenovo Ideapad Gaming 3 Laptop 15.6″ FHD IPS 120Hz, Intel Core i7-11370H, NVIDIA GTX 1650 4GB, 8GB RAM, 1.25TB, Shadow Black (New)",
+    "Price": 38000,
+    "PictureUrl": "/images/Gaming/ideapad gaming.jpg",
+    "SubCategoryId": 3,
     "ProductBrandId": 1
+  },
+  {
+    "Name": "Alienware X15 R1",
+    "Description": "Alienware X15 R1 Gaming Laptop 15.6″ FHD 165Hz, Intel Core i7-11800H, NVIDIA RTX 3060 6GB, 16GB RAM, 256GB (Used: Grade A)",
+    "Price": 44500,
+    "PictureUrl": "/images/Gaming/Alienware_ALWX15-D1978W_INT_1.jpg",
+    "SubCategoryId": 3,
+    "ProductBrandId": 6
+  },
+  {
+    "Name": "Asus TUF Dash F15",
+    "Description": "Asus TUF Dash F15 Gaming Laptop 15.6″ FHD IPS 144Hz, Intel Core i7-12650H, NVIDIA RTX 3070 8GB, 16GB RAM, 512GB, Black (Open Box)",
+    "Price": 56500,
+    "PictureUrl": "/images/Gaming/ASUS_90NR0953-M005R0_INT_11.jpg",
+    "SubCategoryId": 3,
+    "ProductBrandId": 5
+  },
+  {
+    "Name": "Dell G16 7620",
+    "Description": "Dell G16 7620 Gaming Laptop 16″ QHD+ 165Hz, Intel Core i7-12700H, NVIDIA RTX 3060 6GB, 16GB RAM, 1TB, Obsidian Black (New)",
+    "Price": 63500,
+    "PictureUrl": "/images/Gaming/DELL_MKTNG167620_H5340E_INT_1.jpg",
+    "SubCategoryId": 3,
+    "ProductBrandId": 4
+  },
+  {
+    "Name": "Dell Latitude 3380",
+    "Description": "Dell Latitude 3380 Business Laptop 13.3″ HD, Intel Core i3-6006U, Intel HD 520, 8GB RAM, 500GB (Used: Grade B)",
+    "Price": 5000,
+    "PictureUrl": "/images/Business/DELL_75V19_INT_1.jpg",
+    "SubCategoryId": 4,
+    "ProductBrandId": 4
+  },
+  {
+    "Name": "HP ProBook 650 G2",
+    "Description": "HP ProBook 650 G2 Business Laptop 15.6″ FHD, Intel Core i7-6600U, AMD Radeon R7 M350 2GB, 8GB RAM, 256GB (Used: Grade A)",
+    "Price": 9500,
+    "PictureUrl": "/images/Business/HP_1CT46UP_INT_1.jpg",
+    "SubCategoryId": 4,
+    "ProductBrandId": 1
+  },
+  {
+    "Name": "Dell Vostro 3401",
+    "Description": "Dell Vostro 3401 Business Laptop 14″ HD, Intel Core i3-1005G1, Intel Iris Plus G1, 4GB RAM, 1TB (Used: Grade A)",
+    "Price": 10500,
+    "PictureUrl": "/images/Business/DELL_MP9FD_INT_9.jpg",
+    "SubCategoryId": 4,
+    "ProductBrandId": 4
   }
 ]

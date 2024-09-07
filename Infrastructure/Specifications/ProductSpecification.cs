@@ -7,7 +7,7 @@
         public string? Sort { get; set; }
         private const int MAXPAGESIZE = 50;
         public int PageIndex { get; set; } = 1;
-        private int _pageSize = 6;
+        private int _pageSize = 12;
 
         public int PageSize
         {
