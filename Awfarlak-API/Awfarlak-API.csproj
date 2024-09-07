@@ -8,6 +8,12 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Content Remove="wwwroot\images\products\Dell-Latitude-5590.jpg" />
+    <Content Remove="wwwroot\images\products\Hp-EliteBook-745-G6.jpg" />
+    <Content Remove="wwwroot\images\products\ProBook-650-G3.jpg" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="8.0.8" />
     <PackageReference Include="Microsoft.AspNetCore.Identity.EntityFrameworkCore" Version="8.0.8" />
     <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.8">
@@ -19,6 +25,12 @@
 
   <ItemGroup>
     <ProjectReference Include="..\Services\Services.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\images\products\Dell-Latitude-5590.jpg" />
+    <None Include="wwwroot\images\products\Hp-EliteBook-745-G6.jpg" />
+    <None Include="wwwroot\images\products\ProBook-650-G3.jpg" />
   </ItemGroup>
 
 </Project>

@@ -3,7 +3,7 @@
     "Name": "ProBook 650 G3",
     "Description": "HP ProBook 650 G3 Business Laptop 15.6″ FHD, Intel Core i7-7600U, Intel HD 620, 8GB RAM, 256GB (Used: Grade A)",
     "Price": 9000,
-    "PictureUrl": "images/products/ProBook 650 G3.jpg",
+    "PictureUrl": "/images/products/ProBook-650-G3.jpg",
     "SubCategoryId": 1,
     "ProductBrandId": 1
   },
@@ -11,7 +11,7 @@
     "Name": "Dell Latitude 5590",
     "Description": "Dell Latitude 5590 Business Laptop 15.6″ HD, Intel Core i7-8650U, NVIDIA MX130 2GB, 8GB RAM, 256GB (Used: Grade A)",
     "Price": 14000,
-    "PictureUrl": "images/products/Dell Latitude 5590.jpg",
+    "PictureUrl": "/images/products/Dell-Latitude-5590.jpg",
     "SubCategoryId": 1,
     "ProductBrandId": 4
   },
@@ -19,7 +19,7 @@
     "Name": "Hp EliteBook 745 G6",
     "Description": "HP EliteBook 745 G6 Business Laptop 14″ FHD, AMD Ryzen 5 PRO 3500U, AMD Radeon Vega 8, 8GB RAM, 256GB (Used: Grade B)",
     "Price": 12500,
-    "PictureUrl": "images/products/Hp EliteBook 745 G6.jpg",
+    "PictureUrl": "/images/products/Hp-EliteBook-745-G6.jpg",
     "SubCategoryId": 1,
     "ProductBrandId": 1
   },
@@ -27,7 +27,7 @@
     "Name": "ProBook 650 G3",
     "Description": "HP ProBook 650 G3 Business Laptop 15.6″ FHD, Intel Core i7-7600U, Intel HD 620, 8GB RAM, 256GB (Used: Grade A)",
     "Price": 9000,
-    "PictureUrl": "images/products/ProBook 650 G3.jpg",
+    "PictureUrl": "/images/products/ProBook-650-G3.jpg",
     "SubCategoryId": 1,
     "ProductBrandId": 1
   },
@@ -35,7 +35,7 @@
     "Name": "Dell Latitude 5590",
     "Description": "Dell Latitude 5590 Business Laptop 15.6″ HD, Intel Core i7-8650U, NVIDIA MX130 2GB, 8GB RAM, 256GB (Used: Grade A)",
     "Price": 14000,
-    "PictureUrl": "images/products/Dell Latitude 5590.jpg",
+    "PictureUrl": "/images/products/Dell-Latitude-5590.jpg",
     "SubCategoryId": 1,
     "ProductBrandId": 4
   },
@@ -43,7 +43,7 @@
     "Name": "Hp EliteBook 745 G6",
     "Description": "HP EliteBook 745 G6 Business Laptop 14″ FHD, AMD Ryzen 5 PRO 3500U, AMD Radeon Vega 8, 8GB RAM, 256GB (Used: Grade B)",
     "Price": 12500,
-    "PictureUrl": "images/products/Hp EliteBook 745 G6.jpg",
+    "PictureUrl": "/images/products/Hp-EliteBook-745-G6.jpg",
     "SubCategoryId": 1,
     "ProductBrandId": 1
   },
@@ -51,7 +51,7 @@
     "Name": "ProBook 650 G3",
     "Description": "HP ProBook 650 G3 Business Laptop 15.6″ FHD, Intel Core i7-7600U, Intel HD 620, 8GB RAM, 256GB (Used: Grade A)",
     "Price": 9000,
-    "PictureUrl": "images/products/ProBook 650 G3.jpg",
+    "PictureUrl": "/images/products/ProBook-650-G3.jpg",
     "SubCategoryId": 1,
     "ProductBrandId": 1
   },
@@ -59,7 +59,7 @@
     "Name": "Dell Latitude 5590",
     "Description": "Dell Latitude 5590 Business Laptop 15.6″ HD, Intel Core i7-8650U, NVIDIA MX130 2GB, 8GB RAM, 256GB (Used: Grade A)",
     "Price": 14000,
-    "PictureUrl": "images/products/Dell Latitude 5590.jpg",
+    "PictureUrl": "/images/products/Dell-Latitude-5590.jpg",
     "SubCategoryId": 1,
     "ProductBrandId": 4
   },
@@ -67,7 +67,7 @@
     "Name": "Hp EliteBook 745 G6",
     "Description": "HP EliteBook 745 G6 Business Laptop 14″ FHD, AMD Ryzen 5 PRO 3500U, AMD Radeon Vega 8, 8GB RAM, 256GB (Used: Grade B)",
     "Price": 12500,
-    "PictureUrl": "images/products/Hp EliteBook 745 G6.jpg",
+    "PictureUrl": "/images/products/Hp-EliteBook-745-G6.jpg",
     "SubCategoryId": 1,
     "ProductBrandId": 1
   }
