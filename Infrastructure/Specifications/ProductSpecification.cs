@@ -14,13 +14,13 @@
             get => _pageSize;
             set => _pageSize = (value > MAXPAGESIZE) ? MAXPAGESIZE : value;
         }
-        private string _search;
+        //private string _search;
 
-        public string Search
-        {
-            get => _search;
-            set => _search = value.Trim().ToLower();
-        }
+        //public string Search
+        //{
+        //    get => _search;
+        //    set => _search = value.Trim().ToLower();
+        //}
 
 
 
