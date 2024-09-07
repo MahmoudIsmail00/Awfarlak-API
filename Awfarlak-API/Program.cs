@@ -15,6 +15,14 @@ namespace Awfarlak_API
 
             builder.Services.AddControllers();
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowSpecificOrigin",
+                    builder => builder.WithOrigins("http://localhost:4200")
+                                      .AllowAnyHeader()
+                                      .AllowAnyMethod());
+            });
+
             builder.Services.AddDBContextServices(builder.Configuration);
 
             builder.Services.AddApplicationServices();
@@ -28,6 +36,10 @@ namespace Awfarlak_API
             var app = builder.Build();
 
             await ApplySeeding.ApplySeedingasync(app);
+
+            app.UseCors("AllowSpecificOrigin");
+
+
             // Configure the HTTP request pipeline.
             if (app.Environment.IsDevelopment())
             {
