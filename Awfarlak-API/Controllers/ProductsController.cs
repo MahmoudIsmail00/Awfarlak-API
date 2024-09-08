@@ -20,7 +20,13 @@ namespace Awfarlak_API.Controllers
             _productService = productService;
 
         }
+        [HttpGet]
+        public async Task<ActionResult<IReadOnlyList<ProductResultDto>>> GetAllProducts()
+        {
+            var products = await _productService.GetAllProducts();
 
+            return Ok(products);
+        }
         [HttpGet]
         public async Task<ActionResult<Pagination<ProductResultDto>>> GetProducts([FromQuery]ProductSpecification specification)
         {
