@@ -11,7 +11,7 @@ namespace Infrastructure.Specifications
     {
         public ProductsWithFiltersForCountSpecifications(ProductSpecification specification)
         : base(x =>
-            /*string.IsNullOrEmpty(specification.Search) || x.Name.Trim().ToLower().Contains(specification.Search)) &&*/
+            (string.IsNullOrEmpty(specification.Search) || x.Name.Trim().ToLower().Contains(specification.Search)) &&
             (!specification.BrandId.HasValue || x.ProductBrandId == specification.BrandId) &&
             (!specification.TypeId.HasValue || x.SubCategoryId == specification.TypeId)
         )

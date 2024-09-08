@@ -11,8 +11,8 @@ namespace Infrastructure.Specifications
     public class ProductsWithTypesAndBrandsSpecifications : BaseSpecifications<Product>
     {
         public ProductsWithTypesAndBrandsSpecifications(ProductSpecification specification) 
-            : base(x => 
-                //(string.IsNullOrEmpty(specification.Search) || x.Name.Trim().ToLower().Contains(specification.Search)) &&
+            : base(x =>
+                (string.IsNullOrEmpty(specification.Search) || x.Name.Trim().ToLower().Contains(specification.Search)) &&
                 (!specification.BrandId.HasValue || x.ProductBrandId == specification.BrandId) &&
                 (!specification.TypeId.HasValue || x.SubCategoryId == specification.TypeId)
             )
