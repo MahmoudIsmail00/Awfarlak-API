@@ -14,12 +14,12 @@
             get => _pageSize;
             set => _pageSize = (value > MAXPAGESIZE) ? MAXPAGESIZE : value;
         }
-        private string _search;
+        private string _search = string.Empty;
 
         public string Search
         {
             get => _search;
-            set => _search = value.Trim().ToLower();
+            set => _search = value.Trim().ToLower() ?? string.Empty;
         }
 
 

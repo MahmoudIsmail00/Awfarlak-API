@@ -1,12 +1,10 @@
-﻿using Core.Entities;
-using Awfarlak_API.HandleResponses;
-
+﻿using Awfarlak_API.HandleResponses;
+using Core.Entities;
 using Infrastructure.Specifications;
 using Microsoft.AspNetCore.Mvc;
 using Services.Helpers;
 using Services.Services.ProductService;
 using Services.Services.ProductService.Dto;
-using Core;
 
 namespace Awfarlak_API.Controllers
 {
@@ -28,7 +26,7 @@ namespace Awfarlak_API.Controllers
             return Ok(products);
         }
         [HttpGet]
-        public async Task<ActionResult<Pagination<ProductResultDto>>> GetProducts([FromQuery]ProductSpecification specification)
+        public async Task<ActionResult<Pagination<ProductResultDto>>> GetProducts([FromQuery] ProductSpecification specification)
         {
             var products = await _productService.GetProductsAsync(specification);
 
@@ -48,7 +46,7 @@ namespace Awfarlak_API.Controllers
         public async Task<ActionResult<ProductResultDto>> GetProductById(int? id)
         {
             var product = await _productService.GetProductByIdAsync(id);
-            if(product is null)
+            if (product is null)
                 return NotFound(new ApiResponse(404));
 
             return Ok(product);
