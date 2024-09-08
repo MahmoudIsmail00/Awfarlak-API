@@ -39,7 +39,13 @@ namespace Awfarlak_API.Controllers
 
             return Ok(products);
         }
+        [HttpGet("{prodId}")]
+        public async Task<ActionResult<ProductWithSpecsDto>> GetProductWithSpecs(int prodId)
+        {
+            var product = await _productService.GetProductWithSpecsAsync(prodId);
 
+            return Ok(product);
+        }
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]

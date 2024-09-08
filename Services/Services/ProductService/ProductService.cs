@@ -59,12 +59,48 @@ namespace Services.Services.ProductService
 
             return mappedProducts;
         }
-        /// //////////////////////////////////////////////////////////////////////////////////////////       
+        /// ////////////////////////////////// Get All Products  /////////////////////////////////       
         public async Task<IReadOnlyList<ProductResultDto>> GetAllProducts()
         {
             var products = await _unitOfWork.Repository<Product>().GetAllAsync();
             var mappedProducts = _mapper.Map<IReadOnlyList<ProductResultDto>>(products);
             return mappedProducts;
+        }
+        /////////////////////////////Get Product With Specs//////////////////////////////////////////////
+        public async Task<ProductWithSpecsDto> GetProductWithSpecsAsync(int? prodId)
+        {
+
+            var productSpecifications = new BaseSpecifications<Product>(x => x.Id == prodId);
+            productSpecifications.Includes.Add(x => x.ProductBrand);
+            productSpecifications.Includes.Add(x => x.SubCategory);
+
+            var product = await _unitOfWork.Repository<Product>().GetEntityWithSpecificationsAsync(productSpecifications);
+
+            var specs = new BaseSpecifications<ProductSpecs>(x => x.productId == prodId);
+
+            var productSpecs = await _unitOfWork.Repository<ProductSpecs>().GetEntityWithSpecificationsAsync(specs);
+
+            var productWithSpecs = new ProductWithSpecsDto
+            {
+                Name = product.Name,
+                Description = product.Description,
+                Price = product.Price,
+                PictureUrl = product.PictureUrl,
+                ProductSubCategoryName = product.SubCategory.Name,
+                ProductBrandName = product.ProductBrand.Name,
+                Storage = productSpecs.Storage,
+                RAM = productSpecs.RAM,
+                CPU = productSpecs.CPU,
+                GPU = productSpecs.GPU,
+                Screen = productSpecs.Screen,
+                Color = productSpecs.Color,
+                Keyboard = productSpecs.Keyboard,
+                Warranty = productSpecs.Warranty,
+                Panel = productSpecs.Panel,
+                Touchscreen = productSpecs.Touchscreen
+            };
+
+            return productWithSpecs;
         }
         //////////////////////////////////////////////////////////////////////////////////////////////
         public async Task<IReadOnlyList<SubCategory>> GetProductSubCategoryAsync()

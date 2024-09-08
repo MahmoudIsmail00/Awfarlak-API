@@ -14,6 +14,7 @@ namespace Services.Services.ProductService
 
         Task<IReadOnlyList<ProductResultDto>> GetProductsBySubCategory(int? subCategoryId);
         Task<IReadOnlyList<ProductResultDto>> GetAllProducts();
+        Task<ProductWithSpecsDto> GetProductWithSpecsAsync(int? prodId);
 
         Task<IReadOnlyList<ProductSpecs>> GetProductSpecsAsync();
 
