@@ -62,7 +62,11 @@ namespace Services.Services.ProductService
         /// ////////////////////////////////// Get All Products  /////////////////////////////////       
         public async Task<IReadOnlyList<ProductResultDto>> GetAllProducts()
         {
-            var products = await _unitOfWork.Repository<Product>().GetAllAsync();
+            var specs = new BaseSpecifications<Product>(x=> true);
+            specs.Includes.Add(x=> x.ProductBrand);
+            specs.Includes.Add(x=> x.SubCategory);
+
+            var products = await _unitOfWork.Repository<Product>().GetAllWithSpecificationsAsync(specs);
             var mappedProducts = _mapper.Map<IReadOnlyList<ProductResultDto>>(products);
             return mappedProducts;
         }
