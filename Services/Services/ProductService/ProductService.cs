@@ -97,7 +97,8 @@ namespace Services.Services.ProductService
                 Keyboard = productSpecs.Keyboard,
                 Warranty = productSpecs.Warranty,
                 Panel = productSpecs.Panel,
-                Touchscreen = productSpecs.Touchscreen
+                Touchscreen = productSpecs.Touchscreen,
+                Quantity = productSpecs.Quantity
             };
 
             return productWithSpecs;

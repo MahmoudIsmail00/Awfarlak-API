@@ -10,7 +10,9 @@
     "Keyboard": "Standard",
     "Warranty": "6 Months",
     "Panel": "TN",
-    "Touchscreen": false
+    "Touchscreen": false,
+    "Quantity": 15
+
   },
   {
     "productId": 2,
@@ -23,7 +25,8 @@
     "Keyboard": "Standard",
     "Warranty": "6 Months",
     "Panel": "TN",
-    "Touchscreen": false
+    "Touchscreen": false,
+    "Quantity": 10
   },
   {
     "productId": 3,
@@ -36,7 +39,8 @@
     "Keyboard": "Standard",
     "Warranty": "6 Months",
     "Panel": "IPS",
-    "Touchscreen": true
+    "Touchscreen": true,
+    "Quantity": 7
   },
   {
     "productId": 4,
@@ -49,7 +53,8 @@
     "Keyboard": "Backlit",
     "Warranty": "1 Year",
     "Panel": "IPS",
-    "Touchscreen": true
+    "Touchscreen": true,
+    "Quantity": 8
   },
   {
     "productId": 5,
@@ -62,7 +67,8 @@
     "Keyboard": "Standard",
     "Warranty": "1 Year",
     "Panel": "IPS",
-    "Touchscreen": true
+    "Touchscreen": true,
+    "Quantity": 9
   },
   {
     "productId": 6,
@@ -75,7 +81,8 @@
     "Keyboard": "Backlit",
     "Warranty": "1 Year",
     "Panel": "IPS",
-    "Touchscreen": false
+    "Touchscreen": false,
+    "Quantity": 10
   },
   {
     "productId": 7,
@@ -88,7 +95,8 @@
     "Keyboard": "Backlit",
     "Warranty": "6 Months",
     "Panel": "IPS",
-    "Touchscreen": false
+    "Touchscreen": false,
+    "Quantity": 3
   },
   {
     "productId": 8,
@@ -101,7 +109,8 @@
     "Keyboard": "Backlit",
     "Warranty": "6 Months",
     "Panel": "IPS",
-    "Touchscreen": false
+    "Touchscreen": false,
+    "Quantity": 14
   },
   {
     "productId": 9,
@@ -114,7 +123,8 @@
     "Keyboard": "Backlit",
     "Warranty": "1 Year",
     "Panel": "IPS",
-    "Touchscreen": false
+    "Touchscreen": false,
+    "Quantity": 12
   },
   {
     "productId": 10,
@@ -127,7 +137,8 @@
     "Keyboard": "Standard",
     "Warranty": "6 Months",
     "Panel": "TN",
-    "Touchscreen": false
+    "Touchscreen": false,
+    "Quantity": 2
   },
   {
     "productId": 11,
@@ -140,7 +151,8 @@
     "Keyboard": "Standard",
     "Warranty": "6 Months",
     "Panel": "IPS",
-    "Touchscreen": false
+    "Touchscreen": false,
+    "Quantity": 7
   },
   {
     "productId": 12,
@@ -153,6 +165,7 @@
     "Keyboard": "Standard",
     "Warranty": "6 Months",
     "Panel": "TN",
-    "Touchscreen": false
+    "Touchscreen": false,
+    "Quantity": 8
   }
 ]

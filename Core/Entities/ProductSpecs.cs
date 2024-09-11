@@ -1,4 +1,6 @@
-﻿namespace Core.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace Core.Entities
 {
     public class ProductSpecs : BaseEntity
     {
@@ -13,7 +15,12 @@
         public string? Warranty { get; set; }
         public string? Panel { get; set; }
         public bool? Touchscreen { get; set; }
+        [Required]
+        public int Quantity { get; set; }
+        public int MyProperty { get; set; }
+
 
         public int productId { get; set; }
+        public Product Product { get; set; }
     }
 }

@@ -24,5 +24,6 @@ namespace Services.Services.ProductService.Dto
         public string? Warranty { get; set; }
         public string? Panel { get; set; }
         public bool? Touchscreen { get; set; }
+        public int Quantity { get; set; }
     }
 }
