@@ -17,8 +17,6 @@ namespace Core.Entities
         public bool? Touchscreen { get; set; }
         [Required]
         public int Quantity { get; set; }
-        public int MyProperty { get; set; }
-
 
         public int productId { get; set; }
         public Product Product { get; set; }
