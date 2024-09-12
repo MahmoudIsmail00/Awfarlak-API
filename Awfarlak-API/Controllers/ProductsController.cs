@@ -39,6 +39,13 @@ namespace Awfarlak_API.Controllers
 
             return Ok(products);
         }
+        [HttpGet("{subCategory}")]
+        public async Task<ActionResult<IReadOnlyList<ProductWithSpecsDto>>> GetProductsBySubCategoryWithSpecs(int subCategory)
+        {
+            var products = await _productService.GetProductsBySubCategoryWithSpecs(subCategory);
+
+            return Ok(products);
+        }
         [HttpGet("{prodId}")]
         public async Task<ActionResult<ProductWithSpecsDto>> GetProductWithSpecs(int prodId)
         {

@@ -108,9 +108,55 @@ namespace Services.Services.ProductService
             return productWithSpecs;
         }
         //////////////////////////////////////////////////////////////////////////////////////////////
+        public async Task<IReadOnlyList<ProductWithSpecsDto>> GetProductsBySubCategoryWithSpecs(int? subCategoryId)
+        {
+            var specs = new ProductsBySubCategorySpecification
+                (x => x.SubCategoryId == subCategoryId, y => y.ProductBrand, z => z.SubCategory);
+
+            var products = await _unitOfWork.Repository<Product>().GetAllWithSpecificationsAsync(specs);
+
+            var ProductSpecs = await _unitOfWork.Repository<ProductSpecs>().GetAllAsync();
+
+            List<ProductSpecs> ProductsSpecs = new List<ProductSpecs>();
+
+            foreach (var item in products)
+            {
+                ProductsSpecs.Add(ProductSpecs.FirstOrDefault(x=>x.productId == item.Id));
+            }
+            List<ProductWithSpecsDto> result = new List<ProductWithSpecsDto>();
+
+            foreach (var product in products)
+            {
+                ProductSpecs prods = ProductsSpecs.Find(x => x.productId == product.Id);
+                var productWithSpecs = new ProductWithSpecsDto
+                {
+                    Name = product.Name,
+                    Description = product.Description,
+                    Price = product.Price,
+                    PictureUrl = product.PictureUrl,
+                    ProductSubCategoryName = product.SubCategory.Name,
+                    ProductBrandName = product.ProductBrand.Name,
+                    Storage = prods.Storage,
+                    RAM = prods.RAM,
+                    CPU = prods.CPU,
+                    GPU = prods.GPU,
+                    Screen = prods.Screen,
+                    Color = prods.Color,
+                    Keyboard = prods.Keyboard,
+                    Warranty = prods.Warranty,
+                    Panel = prods.Panel,
+                    Touchscreen = prods.Touchscreen,
+                    Quantity = prods.Quantity
+                };
+                result.Add(productWithSpecs);
+            }
+            return result;
+        }
+        //////////////////////////////////////////////////////////////////////////////////////////////
+     
         public async Task<IReadOnlyList<SubCategory>> GetProductSubCategoryAsync()
             => await _unitOfWork.Repository<SubCategory>().GetAllAsync();
 
-       
     }
+
 }
