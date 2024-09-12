@@ -47,11 +47,11 @@ namespace Services.Services.ProductService
         }
 
         ////////////////////////////////////////products by sub category//////////////////////////////////////
-        
+
         public async Task<IReadOnlyList<ProductResultDto>> GetProductsBySubCategory(int? subCategoryId)
         {
             var specs = new ProductsBySubCategorySpecification
-                (x => x.SubCategoryId == subCategoryId , y=>y.ProductBrand , z=> z.SubCategory);
+                (x => x.SubCategoryId == subCategoryId, y => y.ProductBrand, z => z.SubCategory);
 
             var products = await _unitOfWork.Repository<Product>().GetAllWithSpecificationsAsync(specs);
 
@@ -62,9 +62,9 @@ namespace Services.Services.ProductService
         /// ////////////////////////////////// Get All Products  /////////////////////////////////       
         public async Task<IReadOnlyList<ProductResultDto>> GetAllProducts()
         {
-            var specs = new BaseSpecifications<Product>(x=> true);
-            specs.Includes.Add(x=> x.ProductBrand);
-            specs.Includes.Add(x=> x.SubCategory);
+            var specs = new BaseSpecifications<Product>(x => true);
+            specs.Includes.Add(x => x.ProductBrand);
+            specs.Includes.Add(x => x.SubCategory);
 
             var products = await _unitOfWork.Repository<Product>().GetAllWithSpecificationsAsync(specs);
             var mappedProducts = _mapper.Map<IReadOnlyList<ProductResultDto>>(products);
@@ -86,6 +86,7 @@ namespace Services.Services.ProductService
 
             var productWithSpecs = new ProductWithSpecsDto
             {
+                Id = product.Id,
                 Name = product.Name,
                 Description = product.Description,
                 Price = product.Price,
@@ -121,7 +122,7 @@ namespace Services.Services.ProductService
 
             foreach (var item in products)
             {
-                ProductsSpecs.Add(ProductSpecs.FirstOrDefault(x=>x.productId == item.Id));
+                ProductsSpecs.Add(ProductSpecs.FirstOrDefault(x => x.productId == item.Id));
             }
             List<ProductWithSpecsDto> result = new List<ProductWithSpecsDto>();
 
@@ -130,6 +131,7 @@ namespace Services.Services.ProductService
                 ProductSpecs prods = ProductsSpecs.Find(x => x.productId == product.Id);
                 var productWithSpecs = new ProductWithSpecsDto
                 {
+                    Id = product.Id,
                     Name = product.Name,
                     Description = product.Description,
                     Price = product.Price,
@@ -153,7 +155,7 @@ namespace Services.Services.ProductService
             return result;
         }
         //////////////////////////////////////////////////////////////////////////////////////////////
-     
+
         public async Task<IReadOnlyList<SubCategory>> GetProductSubCategoryAsync()
             => await _unitOfWork.Repository<SubCategory>().GetAllAsync();
 
