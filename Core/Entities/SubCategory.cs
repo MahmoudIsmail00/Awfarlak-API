@@ -9,6 +9,5 @@ namespace Core.Entities
         public int ProductTypeId { get; set; }
         public ProductType ProductType { get; set; }
 
-        public ICollection<Product> Products { get; set; }
     }
 }
