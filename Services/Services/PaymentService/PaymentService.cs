@@ -1,7 +1,7 @@
 ﻿using Core.Entities;
 using Core.Entities.OrderEntities;
-using Infrastructure.BasketRepository.BasketEntities;
 using Infrastructure.BasketRepository;
+using Infrastructure.BasketRepository.BasketEntities;
 using Infrastructure.Interfaces;
 using Infrastructure.Specifications;
 using Microsoft.Extensions.Configuration;
@@ -88,7 +88,7 @@ namespace Services.Services.PaymentService
 
             if (order == null) return null;
 
-            order.OrderStatus = OrderStatus.PaymentReceived;
+            order.OrderStatus = OrderStatus.PaymentFailed;
             await _unitOfWork.Complete();
 
             return order;
@@ -102,7 +102,7 @@ namespace Services.Services.PaymentService
 
             if (order == null) return null;
 
-            order.OrderStatus = OrderStatus.PaymentFailed;
+            order.OrderStatus = OrderStatus.PaymentReceived;
             await _unitOfWork.Complete();
 
             return order;

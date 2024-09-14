@@ -36,6 +36,7 @@ namespace Awfarlak_API.Controllers
             return basket;
         }
 
+        [AllowAnonymous]
         [HttpPost("webhook")]
         public async Task<ActionResult> StripeWebhook()
         {

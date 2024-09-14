@@ -1,6 +1,5 @@
-﻿using Core.Entities;
-using Awfarlak_API.HandleResponses;
-using Microsoft.AspNetCore.Authorization;
+﻿using Awfarlak_API.HandleResponses;
+using Core.Entities;
 using Microsoft.AspNetCore.Mvc;
 using Services.Services.OrderService;
 using Services.Services.OrderService.Dto;
@@ -8,7 +7,7 @@ using System.Security.Claims;
 
 namespace Awfarlak_API.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class OrdersController : BaseController
     {
         private readonly IOrderService _orderService;
@@ -34,12 +33,13 @@ namespace Awfarlak_API.Controllers
 
             var orders = await _orderService.GetAllOrdersForUserAsync(email);
 
-            if (orders is { Count: <=0})
+            if (orders is { Count: <= 0 })
                 return BadRequest(new ApiResponse(200, "You Dont't Have Any Orders Yet"));
 
 
             return Ok(orders);
         }
+
         [HttpGet("{id}")]
         public async Task<ActionResult<OrderResultDto>> GetOrderByIdAsync(int id)
         {
@@ -47,12 +47,12 @@ namespace Awfarlak_API.Controllers
 
             var order = await _orderService.GetOrderByIdAsync(id, email);
 
-            if(order is null)
+            if (order is null)
                 return BadRequest(new ApiResponse(200, $"There is no Order With Id {id}"));
 
             return Ok(order);
         }
-        [HttpGet("GetAllDeliveryMethodsAsync")]
+        [HttpGet]
         public async Task<ActionResult<IReadOnlyList<DeliveryMethod>>> GetAllDeliveryMethodsAsync()
             => Ok(await _orderService.GetAllDeliveryMethodsAsync());
     }
