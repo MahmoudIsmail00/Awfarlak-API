@@ -63,7 +63,7 @@ namespace Core.Migrations.AppIdentityDb
                     b.HasIndex("AppUserId")
                         .IsUnique();
 
-                    b.ToTable("Address");
+                    b.ToTable("Addresses");
                 });
 
             modelBuilder.Entity("Core.IdentityEntities.AppUser", b =>

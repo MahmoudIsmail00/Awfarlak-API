@@ -3,6 +3,7 @@ using Core.IdentityEntities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Services.Services.OrderService.Dto;
 using Services.Services.UserService;
 using Services.Services.UserService.Dto;
 using System.Security.Claims;
@@ -35,6 +36,7 @@ namespace Awfarlak_API.Controllers
         }
 
         [HttpPost]
+
         public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
             var user = await _userService.Login(loginDto);
@@ -44,6 +46,42 @@ namespace Awfarlak_API.Controllers
 
             return Ok(user);
         }
+
+
+        [HttpGet]
+        [Authorize]
+        public async Task<ActionResult<AddressDto>> GetAddress()
+        {
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+
+            if (string.IsNullOrEmpty(userId))
+                return Unauthorized(new ApiException(401, "User is not authenticated"));
+
+            var address = await _userService.GetUserAddress(userId);
+
+            if (address == null)
+                return NotFound(new ApiException(404, "Address not found"));
+
+            return Ok(address);
+        }
+
+        [HttpPut]
+        [Authorize]
+        public async Task<ActionResult> UpdateAddress([FromBody] AddressDto addressDto)
+        {
+
+
+            var userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            var result = await _userService.UpdateUserAddress(userId, addressDto);
+
+            if (result == null)
+                return BadRequest(new ApiException(400, "Address update failed"));
+
+            return NoContent();
+        }
+
+
 
         [HttpGet("getCurrentUser")]
         [Authorize]
@@ -57,10 +95,14 @@ namespace Awfarlak_API.Controllers
             return new UserDto
             {
                 DisplayName = user.DisplayName,
-                Email = user.Email
+                Email = user.Email,
+
             };
 
         }
+
+
+
 
 
 

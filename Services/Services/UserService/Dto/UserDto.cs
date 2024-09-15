@@ -1,9 +1,13 @@
-﻿namespace Services.Services.UserService.Dto
+﻿
+using Services.Services.OrderService.Dto;
+
+namespace Services.Services.UserService.Dto
 {
     public class UserDto
     {
         public string DisplayName { get; set; }
         public string Email { get; set; }
         public string Token { get; set; }
+        public AddressDto Address { get; set; }
     }
 }

@@ -22,6 +22,7 @@ namespace Services.Services.TokenService
         {
             var claims = new List<Claim>
             {
+                new Claim(ClaimTypes.NameIdentifier, appUser.Id),
                 new Claim(ClaimTypes.Email, appUser.Email),
                 new Claim(ClaimTypes.GivenName, appUser.DisplayName)
             };

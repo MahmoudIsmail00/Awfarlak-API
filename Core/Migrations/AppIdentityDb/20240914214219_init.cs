@@ -6,7 +6,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 namespace Core.Migrations.AppIdentityDb
 {
     /// <inheritdoc />
-    public partial class Init : Migration
+    public partial class init : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -73,7 +73,7 @@ namespace Core.Migrations.AppIdentityDb
                 });
 
             migrationBuilder.CreateTable(
-                name: "Address",
+                name: "Addresses",
                 columns: table => new
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
@@ -88,9 +88,9 @@ namespace Core.Migrations.AppIdentityDb
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PK_Address", x => x.Id);
+                    table.PrimaryKey("PK_Addresses", x => x.Id);
                     table.ForeignKey(
-                        name: "FK_Address_AspNetUsers_AppUserId",
+                        name: "FK_Addresses_AspNetUsers_AppUserId",
                         column: x => x.AppUserId,
                         principalTable: "AspNetUsers",
                         principalColumn: "Id",
@@ -183,8 +183,8 @@ namespace Core.Migrations.AppIdentityDb
                 });
 
             migrationBuilder.CreateIndex(
-                name: "IX_Address_AppUserId",
-                table: "Address",
+                name: "IX_Addresses_AppUserId",
+                table: "Addresses",
                 column: "AppUserId",
                 unique: true);
 
@@ -232,7 +232,7 @@ namespace Core.Migrations.AppIdentityDb
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "Address");
+                name: "Addresses");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoleClaims");

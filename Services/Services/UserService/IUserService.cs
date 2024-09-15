@@ -1,9 +1,5 @@
-﻿using Services.Services.UserService.Dto;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Services.Services.OrderService.Dto;
+using Services.Services.UserService.Dto;
 
 namespace Services.Services.UserService
 {
@@ -11,6 +7,10 @@ namespace Services.Services.UserService
     {
         Task<UserDto> Register(RegisterDto registerDto);
         Task<UserDto> Login(LoginDto loginDto);
+
+        Task<AddressDto> UpdateUserAddress(string userId, AddressDto addressDto);
+        Task<AddressDto> GetUserAddress(string userId);
+
         //Task<UserDto> GetCurrentUser();
 
     }
