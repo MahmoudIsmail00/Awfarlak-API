@@ -8,6 +8,9 @@ namespace Services.Services.ProductService
     public interface IProductService
     {
         Task<ProductResultDto> GetProductByIdAsync(int? id);
+
+        void CreateProductWithSpecs(ProductWithSpecsCreationDTO productWithSpecs);
+
         Task<Pagination<ProductResultDto>> GetProductsAsync(ProductSpecification specification);
         Task<IReadOnlyList<ProductBrand>> GetProductBrandsAsync();
         Task<IReadOnlyList<DeliveryMethod>> GetDeliveryMethods();

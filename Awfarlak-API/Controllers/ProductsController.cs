@@ -11,13 +11,34 @@ namespace Awfarlak_API.Controllers
     public class ProductsController : BaseController
     {
         private readonly IProductService _productService;
+        private IWebHostEnvironment _webHostEnvironment;
 
 
-        public ProductsController(IProductService productService)
+        public ProductsController(IProductService productService, IWebHostEnvironment webHostEnvironment)
         {
             _productService = productService;
-
+            _webHostEnvironment = webHostEnvironment;
         }
+
+        [HttpPost]
+        public async Task<ActionResult> CreateProductWithSpecs(ProductWithSpecsCreationDTO productWithSpecs)
+        {
+                //var subCategoryName =  _productService.GetProductSubCategoryAsync().Result.Where(x=> x.Id == productWithSpecs.Id);
+                //string RootPath = _webHostEnvironment.WebRootPath;
+                //string filename = productWithSpecs.PictureUrl.Split(@"/")[2];
+                //var upload = Path.Combine(RootPath, $"images/{subCategoryName}");
+                //var ext = Path.GetExtension(productWithSpecs.PictureUrl.Split(@".")[productWithSpecs.PictureUrl.Length - 1]);
+                //using (var fileStream = new FileStream(Path.Combine(upload, filename + ext), FileMode.Create))
+                //{
+                //    file.CopyTo(fileStream);
+                //}
+            
+
+            _productService.CreateProductWithSpecs(productWithSpecs);
+
+            return Ok();
+        }
+
         [HttpGet]
         public async Task<ActionResult<IReadOnlyList<ProductResultDto>>> GetAllProducts()
         {
@@ -64,7 +85,6 @@ namespace Awfarlak_API.Controllers
 
             return Ok(product);
         }
-
 
         [HttpGet]
         [Route("Brands")]

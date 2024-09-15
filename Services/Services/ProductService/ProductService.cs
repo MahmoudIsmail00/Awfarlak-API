@@ -162,5 +162,46 @@ namespace Services.Services.ProductService
         public async Task<IReadOnlyList<DeliveryMethod>> GetDeliveryMethods()
          => await _unitOfWork.Repository<DeliveryMethod>().GetAllAsync();
 
+        ////////////////////////////////////Create new product ////////////////////////////////////////
+
+        public void CreateProductWithSpecs(ProductWithSpecsCreationDTO productWithSpecs)
+        {
+            var product = new Product
+            {
+                Name = productWithSpecs.Name,
+                Description = productWithSpecs.Description,
+                Price = productWithSpecs.Price,
+                ProductBrandId = productWithSpecs.BrandId,
+                SubCategoryId = productWithSpecs.SubCategoryId,
+                PictureUrl = productWithSpecs.PictureUrl
+            };
+
+            _unitOfWork.Repository<Product>().Add(product);
+            _unitOfWork.Complete();
+
+            var specification = new BaseSpecifications<Product>(x => x.PictureUrl == productWithSpecs.PictureUrl);
+
+            var lastProduct = _unitOfWork.Repository<Product>().GetAllAsync().Result.LastOrDefault();
+            var specs = new ProductSpecs
+            {
+                Color = productWithSpecs.Color,
+                Screen = productWithSpecs.Screen,
+                Storage = productWithSpecs.Storage,
+                CPU = productWithSpecs.CPU,
+                GPU = productWithSpecs.GPU,
+                Keyboard = productWithSpecs.Keyboard,
+                Warranty = productWithSpecs.Warranty,
+                Panel = productWithSpecs.Panel,
+                Quantity = productWithSpecs.Quantity,
+                RAM = productWithSpecs.RAM,
+                Touchscreen = productWithSpecs.Touchscreen,
+                productId = lastProduct.Id
+            };
+
+            _unitOfWork.Repository<ProductSpecs>().Add(specs);
+            _unitOfWork.Complete();
+        }
+        //////////////////////////////////////////////////////////////////////////////////////////////
+
     }
 }
