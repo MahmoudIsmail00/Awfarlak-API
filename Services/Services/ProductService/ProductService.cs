@@ -159,6 +159,8 @@ namespace Services.Services.ProductService
         public async Task<IReadOnlyList<SubCategory>> GetProductSubCategoryAsync()
             => await _unitOfWork.Repository<SubCategory>().GetAllAsync();
 
-    }
+        public async Task<IReadOnlyList<DeliveryMethod>> GetDeliveryMethods()
+         => await _unitOfWork.Repository<DeliveryMethod>().GetAllAsync();
 
+    }
 }

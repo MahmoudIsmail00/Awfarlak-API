@@ -40,18 +40,18 @@ namespace Services.Services.PaymentService
             {
                 var deliveryMethod = await _unitOfWork.Repository<DeliveryMethod>().GetByIdAsync((int)basket.DeliveryMethodId);
                 shippingPrice = (decimal)deliveryMethod.Price;
+                basket.ShippingPrice = shippingPrice;
             }
 
             foreach (var item in basket.BasketItems)
             {
                 var productItem = await _unitOfWork.Repository<Product>().GetByIdAsync(item.Id);
+                
                 if (item.Price != productItem.Price)
-                {
                     item.Price = (decimal)productItem.Price;
-                }
             }
 
-            var service = new PaymentIntentService();
+            PaymentIntentService service = new PaymentIntentService();
 
             PaymentIntent intent;
 

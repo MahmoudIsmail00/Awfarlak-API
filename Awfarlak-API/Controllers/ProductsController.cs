@@ -79,5 +79,10 @@ namespace Awfarlak_API.Controllers
         [HttpGet("Types")]
         public async Task<ActionResult<IReadOnlyList<SubCategory>>> GetProductSubCategories()
             => Ok(await _productService.GetProductSubCategoryAsync());
+
+        [HttpGet("Delivery")]
+        public async Task<ActionResult<IReadOnlyList<DeliveryMethod>>> GetDeliveryMethods()
+            => Ok(await _productService.GetDeliveryMethods());
+
     }
 }

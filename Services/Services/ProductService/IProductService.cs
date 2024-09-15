@@ -10,6 +10,7 @@ namespace Services.Services.ProductService
         Task<ProductResultDto> GetProductByIdAsync(int? id);
         Task<Pagination<ProductResultDto>> GetProductsAsync(ProductSpecification specification);
         Task<IReadOnlyList<ProductBrand>> GetProductBrandsAsync();
+        Task<IReadOnlyList<DeliveryMethod>> GetDeliveryMethods();
         Task<IReadOnlyList<SubCategory>> GetProductSubCategoryAsync();
 
         Task<IReadOnlyList<ProductResultDto>> GetProductsBySubCategory(int? subCategoryId);

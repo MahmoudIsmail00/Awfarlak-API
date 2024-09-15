@@ -12,7 +12,7 @@ namespace Services.Services.PaymentService
 {
     public interface IPaymentService
     {
-        Task<CustomerBasket> CreateOrUpdatePaymentIntent(string basketId);
+        Task<CustomerBasket?> CreateOrUpdatePaymentIntent(string basketId);
 
         Task<Order> UpdateOrderPaymentSucceeded(string paymentIntentId);
 
