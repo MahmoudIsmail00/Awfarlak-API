@@ -8,7 +8,7 @@ namespace Awfarlak_API.Helper
 {
     public class ApplySeeding
     {
-        public static async Task ApplySeedingasync(WebApplication app)
+        public static async Task ApplySeedingAsync(WebApplication app)
         {
             using (var scope = app.Services.CreateScope())
             {
@@ -17,18 +17,19 @@ namespace Awfarlak_API.Helper
 
                 try
                 {
-                    var context = services.GetRequiredService<StoreDbContext>();
+                    var storeContext = services.GetRequiredService<StoreDbContext>();
                     var identityContext = services.GetRequiredService<AppIdentityDbContext>();
                     var userManager = services.GetRequiredService<UserManager<AppUser>>();
-                    await context.Database.MigrateAsync();
-                    await StoreContextSeed.SeedAsync(context, loggerFactory);
-                    await AppIdentityContextSeed.SeedUserAsync(userManager);
+                    var roleManager = services.GetRequiredService<RoleManager<IdentityRole>>();
+                    await storeContext.Database.MigrateAsync();
+                    await StoreContextSeed.SeedAsync(storeContext, loggerFactory);
+                    await identityContext.Database.MigrateAsync();
+                    await AppIdentityContextSeed.SeedAsync(userManager, roleManager);
                 }
                 catch (Exception ex)
                 {
-
-                    var logger = loggerFactory.CreateLogger<StoreContextSeed>();
-                    logger.LogError(ex.Message);
+                    var logger = loggerFactory.CreateLogger<ApplySeeding>();
+                    logger.LogError(ex, "An error occurred during seeding.");
                 }
             }
         }

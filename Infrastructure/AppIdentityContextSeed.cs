@@ -1,36 +1,56 @@
 ﻿using Core.IdentityEntities;
 using Microsoft.AspNetCore.Identity;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure
 {
     public class AppIdentityContextSeed
     {
-        public static async Task SeedUserAsync(UserManager<AppUser> userManager)
+        public static async Task SeedAsync(UserManager<AppUser> userManager, RoleManager<IdentityRole> roleManager)
+        {
+            await SeedRolesAsync(roleManager);
+            await SeedUsersAsync(userManager);
+        }
+
+        private static async Task SeedRolesAsync(RoleManager<IdentityRole> roleManager)
+        {
+            string[] roleNames = { "Admin", "User" };
+
+            foreach (var roleName in roleNames)
+            {
+                var roleExist = await roleManager.RoleExistsAsync(roleName);
+                if (!roleExist)
+                {
+                    await roleManager.CreateAsync(new IdentityRole(roleName));
+                }
+            }
+        }
+
+        private static async Task SeedUsersAsync(UserManager<AppUser> userManager)
         {
             if (!userManager.Users.Any())
             {
                 var user = new AppUser
                 {
-                    DisplayName = "Ahmed",
-                    Email = "Ahmed@gmail.com",
-                    UserName = "AhmedKhaled",
+                    DisplayName = "Kamal",
+                    Email = "kamal@gmail.com",
+                    UserName = "KamalAshraf",
                     Address = new Address
                     {
-                        FirstName = "Ahmed",
-                        LastName = "Khaled",
-                        Street = "77",
+                        FirstName = "Kamal",
+                        LastName = "Ashraf",
+                        Street = "10",
                         State = "Cairo",
                         City = "Maadi",
-                        ZipCode = "90120"
+                        ZipCode = "11828"
                     }
                 };
 
-                await userManager.CreateAsync(user, "Password123!");
+                var result = await userManager.CreateAsync(user, "Kam00#");
+
+                if (result.Succeeded)
+                {
+                    await userManager.AddToRoleAsync(user, "Admin");
+                }
             }
         }
     }

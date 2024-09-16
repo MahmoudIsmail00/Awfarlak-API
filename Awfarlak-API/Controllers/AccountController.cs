@@ -49,6 +49,27 @@ namespace Awfarlak_API.Controllers
 
 
         [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public IActionResult GetAdminData()
+        {
+
+            return Ok("This is admin data");
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        public async Task<IActionResult> UpdateUserRole([FromBody] UpdateUserRoleDto updateUserRoleDto)
+        {
+            var result = await _userService.UpdateUserRole(updateUserRoleDto);
+            if (!result)
+                return BadRequest(new ApiException(400, "Failed to update user role"));
+
+            return Ok("User role updated successfully");
+        }
+
+
+
+        [HttpGet]
         [Authorize]
         public async Task<ActionResult<AddressDto>> GetAddress()
         {
@@ -82,29 +103,25 @@ namespace Awfarlak_API.Controllers
         }
 
 
-
-        [HttpGet("getCurrentUser")]
+        [HttpGet]
         [Authorize]
         public async Task<ActionResult<UserDto>> GetCurrentUser()
         {
-            //var email = HttpContext.User?.Claims?.FirstOrDefault(x => x.Type == ClaimTypes.Email).Value;
             var email = User?.FindFirstValue(ClaimTypes.Email);
 
+            if (string.IsNullOrEmpty(email))
+                return Unauthorized(new ApiException(401, "User is not authenticated"));
+
             var user = await _userManager.FindByEmailAsync(email);
+
+            if (user == null)
+                return NotFound(new ApiException(404, "User not found"));
 
             return new UserDto
             {
                 DisplayName = user.DisplayName,
                 Email = user.Email,
-
             };
-
         }
-
-
-
-
-
-
     }
 }

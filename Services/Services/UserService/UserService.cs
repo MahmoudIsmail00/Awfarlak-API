@@ -5,6 +5,7 @@ using Microsoft.EntityFrameworkCore;
 using Services.Services.OrderService.Dto;
 using Services.Services.TokenService;
 using Services.Services.UserService.Dto;
+using System.Security.Claims;
 
 namespace Services.Services.UserService
 {
@@ -40,11 +41,14 @@ namespace Services.Services.UserService
             if (!result.Succeeded)
                 return null;
 
+            var roles = await _userManager.GetRolesAsync(user);
+
             return new UserDto
             {
                 DisplayName = user.DisplayName,
                 Email = user.Email,
-                Token = _tokenService.CreateToken(user)
+                Token = await _tokenService.CreateTokenAsync(user),
+                Roles = roles.ToList()
             };
         }
 
@@ -67,11 +71,41 @@ namespace Services.Services.UserService
             if (!result.Succeeded)
                 return null;
 
+            await _userManager.AddToRoleAsync(appUser, "User");
+
+            var roles = await _userManager.GetRolesAsync(appUser);
+
             return new UserDto
             {
                 DisplayName = appUser.DisplayName,
                 Email = appUser.Email,
-                Token = _tokenService.CreateToken(appUser)
+                Token = await _tokenService.CreateTokenAsync(appUser),
+                Roles = roles.ToList()
+            };
+        }
+
+
+        public async Task<UserDto> GetCurrentUser()
+        {
+            var userId = _userManager.GetUserId(ClaimsPrincipal.Current);
+
+            if (string.IsNullOrEmpty(userId))
+                return null;
+
+            var user = await _userManager.FindByIdAsync(userId);
+
+            if (user == null)
+                return null;
+
+            var roles = await _userManager.GetRolesAsync(user);
+
+            return new UserDto
+            {
+                DisplayName = user.DisplayName,
+                Email = user.Email,
+                Token = await _tokenService.CreateTokenAsync(user),
+                Address = await GetUserAddress(userId),
+                Roles = roles.ToList()
             };
         }
 
@@ -141,7 +175,25 @@ namespace Services.Services.UserService
             };
         }
 
+        public async Task<bool> UpdateUserRole(UpdateUserRoleDto updateUserRoleDto)
+        {
+            var user = await _userManager.FindByEmailAsync(updateUserRoleDto.Email);
 
+            if (user == null)
+                return false;
+
+            var currentRoles = await _userManager.GetRolesAsync(user);
+
+            var removeResult = await _userManager.RemoveFromRolesAsync(user, currentRoles);
+            if (!removeResult.Succeeded)
+                return false;
+
+            var addResult = await _userManager.AddToRoleAsync(user, updateUserRoleDto.NewRole);
+            if (!addResult.Succeeded)
+                return false;
+
+            return true;
+        }
 
     }
 }

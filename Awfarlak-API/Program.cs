@@ -2,8 +2,6 @@
 using Awfarlak_API.Extensions;
 using Awfarlak_API.Helper;
 using Awfarlak_API.Middlewares;
-using Microsoft.Extensions.FileProviders;
-using System;
 
 namespace Awfarlak_API
 {
@@ -37,7 +35,7 @@ namespace Awfarlak_API
 
             var app = builder.Build();
 
-            await ApplySeeding.ApplySeedingasync(app);
+            await ApplySeeding.ApplySeedingAsync(app);
 
             app.UseCors("AllowSpecificOrigin");
 

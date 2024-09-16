@@ -4,6 +4,6 @@ namespace Services.Services.TokenService
 {
     public interface ITokenService
     {
-        string CreateToken(AppUser appUser);
+        Task<string> CreateTokenAsync(AppUser appUser);
     }
 }

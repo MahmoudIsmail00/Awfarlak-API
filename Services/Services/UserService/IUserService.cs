@@ -10,8 +10,8 @@ namespace Services.Services.UserService
 
         Task<AddressDto> UpdateUserAddress(string userId, AddressDto addressDto);
         Task<AddressDto> GetUserAddress(string userId);
-
-        //Task<UserDto> GetCurrentUser();
+        Task<bool> UpdateUserRole(UpdateUserRoleDto updateUserRoleDto);
+        Task<UserDto> GetCurrentUser();
 
     }
 }
