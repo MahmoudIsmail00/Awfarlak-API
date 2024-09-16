@@ -9,7 +9,8 @@ namespace Services.Services.ProductService
     {
         Task<ProductResultDto> GetProductByIdAsync(int? id);
 
-        void CreateProductWithSpecs(ProductWithSpecsCreationDTO productWithSpecs);
+        Task CreateProductWithSpecs(ProductWithSpecsCreationDTO productWithSpecs);
+        Task DeleteProduct(int id);
 
         Task<Pagination<ProductResultDto>> GetProductsAsync(ProductSpecification specification);
         Task<IReadOnlyList<ProductBrand>> GetProductBrandsAsync();

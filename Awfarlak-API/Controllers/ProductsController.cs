@@ -32,10 +32,14 @@ namespace Awfarlak_API.Controllers
                 //{
                 //    file.CopyTo(fileStream);
                 //}
-            
+            await _productService.CreateProductWithSpecs(productWithSpecs);
 
-            _productService.CreateProductWithSpecs(productWithSpecs);
-
+            return Ok();
+        }
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteProduct(int id)
+        {
+            await _productService.DeleteProduct(id);
             return Ok();
         }
 

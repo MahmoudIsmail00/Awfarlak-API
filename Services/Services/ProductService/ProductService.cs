@@ -164,7 +164,7 @@ namespace Services.Services.ProductService
 
         ////////////////////////////////////Create new product ////////////////////////////////////////
 
-        public void CreateProductWithSpecs(ProductWithSpecsCreationDTO productWithSpecs)
+        public async Task CreateProductWithSpecs(ProductWithSpecsCreationDTO productWithSpecs)
         {
             var product = new Product
             {
@@ -176,10 +176,9 @@ namespace Services.Services.ProductService
                 PictureUrl = productWithSpecs.PictureUrl
             };
 
-            _unitOfWork.Repository<Product>().Add(product);
-            _unitOfWork.Complete();
-
-            var specification = new BaseSpecifications<Product>(x => x.PictureUrl == productWithSpecs.PictureUrl);
+             await _unitOfWork.Repository<Product>().Add(product);
+             await _unitOfWork.Complete();
+            //var specification = new BaseSpecifications<Product>(x => x.PictureUrl == productWithSpecs.PictureUrl);
 
             var lastProduct = _unitOfWork.Repository<Product>().GetAllAsync().Result.LastOrDefault();
             var specs = new ProductSpecs
@@ -198,8 +197,27 @@ namespace Services.Services.ProductService
                 productId = lastProduct.Id
             };
 
-            _unitOfWork.Repository<ProductSpecs>().Add(specs);
-            _unitOfWork.Complete();
+            await _unitOfWork.Repository<ProductSpecs>().Add(specs);
+            await  _unitOfWork.Complete();
+        }
+
+        public async Task DeleteProduct(int id)
+        {
+            var product = await _unitOfWork.Repository<Product>().GetByIdAsync(id);
+
+            var specs = new BaseSpecifications<ProductSpecs>(x=>x.productId == id);
+
+            var productSpecs = await _unitOfWork.Repository<ProductSpecs>().GetEntityWithSpecificationsAsync(specs);
+
+            if(product == null)
+                return;
+
+             _unitOfWork.Repository<ProductSpecs>().Delete(productSpecs);
+            await _unitOfWork.Complete();
+
+            _unitOfWork.Repository<Product>().Delete(product);
+            await _unitOfWork.Complete();
+
         }
         //////////////////////////////////////////////////////////////////////////////////////////////
 
