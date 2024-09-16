@@ -59,6 +59,13 @@ namespace Awfarlak_API.Controllers
             return Ok(products);
         }
         [HttpGet]
+        public async Task<ActionResult<IReadOnlyList<ProductType>>> GetAllTypes()
+        {
+            var types = await _productService.GetProductTypes();
+
+            return Ok(types);
+        }
+        [HttpGet]
         public async Task<ActionResult<Pagination<ProductResultDto>>> GetProducts([FromQuery] ProductSpecification specification)
         {
             var products = await _productService.GetProductsAsync(specification);
@@ -98,11 +105,42 @@ namespace Awfarlak_API.Controllers
             return Ok(product);
         }
 
+        ///////////////////////////////////////// Brands //////////////////////////////////////////////////////////
         [HttpGet]
         [Route("Brands")]
         public async Task<ActionResult<IReadOnlyList<ProductBrand>>> GetProductBrands()
             => Ok(await _productService.GetProductBrandsAsync());
 
+        [HttpGet("{brandId}")]
+        public async Task<ActionResult<ProductBrand>> GetBrandById(int? brandId)
+        {
+            return Ok(await _productService.GetProductBrandById(brandId));
+        }
+        [HttpPost]
+        public async Task<ActionResult> CreateNewBrand(ProductBrand brand)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            await _productService.CreateBrand(brand);
+            return Ok();
+        }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<ProductBrand>> UpdateBrand([FromRoute] int? id, ProductBrand productBrand)
+        {
+            var brand = await _productService.UpdateBrand(id, productBrand);
+            return Ok();
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteBrand(int id)
+        {
+            await _productService.DeleteBrand(id);
+            return Ok();
+        }
+
+        //////////////////////////////////////////////////////////////////////////////////////////////////////////
         [HttpGet]
         [Route("Specs")]
         public async Task<ActionResult<IReadOnlyList<ProductSpecs>>> GetProductSpecs()
@@ -111,6 +149,36 @@ namespace Awfarlak_API.Controllers
         [HttpGet("Types")]
         public async Task<ActionResult<IReadOnlyList<SubCategory>>> GetProductSubCategories()
             => Ok(await _productService.GetProductSubCategoryAsync());
+
+        [HttpGet("{subCategoryId}")]
+        public async Task<ActionResult<ProductSubCategoryDto>> GetSubCategoryById(int? subCategoryId)
+        {
+            return Ok(await _productService.GetSubCategory(subCategoryId));
+        }
+        
+        [HttpPost]
+        public async Task<ActionResult> CreateNewSubCategory(ProductSubCategoryDto subCategory)
+        {
+            if (!ModelState.IsValid)
+                return BadRequest();
+
+            await _productService.CreateSubCategory(subCategory);
+            return Ok();
+        }
+        
+        [HttpPut("{id}")]
+        public async Task<ActionResult<ProductSubCategoryDto>> UpdateSubCategory([FromRoute] int? id, ProductSubCategoryDto subCategoryDto)
+        {
+            var prod = await _productService.UpdateSubCategory(id, subCategoryDto);
+            return Ok();
+        }
+        
+        [HttpDelete("{id}")]
+        public async Task<ActionResult> DeleteSubCategory(int id)
+        {
+            await _productService.DeleteSubCategory(id);
+            return Ok();
+        }
 
         [HttpGet("Delivery")]
         public async Task<ActionResult<IReadOnlyList<DeliveryMethod>>> GetDeliveryMethods()
