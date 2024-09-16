@@ -36,6 +36,14 @@ namespace Awfarlak_API.Controllers
 
             return Ok();
         }
+
+        [HttpPut("{id}")]
+        public async Task<ActionResult<ProductWithSpecsCreationDTO>> UpdateProductWithSpecs([FromRoute]int? id, ProductWithSpecsCreationDTO productWithSpecs)
+        {
+            var prod = await _productService.UpdateProductWithSpecs(id, productWithSpecs);
+            return Ok();
+        }
+
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteProduct(int id)
         {

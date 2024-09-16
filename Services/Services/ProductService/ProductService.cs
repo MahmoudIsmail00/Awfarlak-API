@@ -219,6 +219,40 @@ namespace Services.Services.ProductService
             await _unitOfWork.Complete();
 
         }
+
+        public async Task<ProductWithSpecsCreationDTO> UpdateProductWithSpecs(int? id, ProductWithSpecsCreationDTO productWithSpecs)
+        {
+            var oldProduct = await _unitOfWork.Repository<Product>().GetByIdAsync(id);
+
+            var oldspecifications = await _unitOfWork.Repository<ProductSpecs>()
+                .GetEntityWithSpecificationsAsync(new BaseSpecifications<ProductSpecs>(x => x.productId == id));
+
+            // update product
+            oldProduct.Name = productWithSpecs.Name;
+            oldProduct.Description = productWithSpecs.Description;
+            oldProduct.Price = productWithSpecs.Price;
+            oldProduct.ProductBrandId = productWithSpecs.BrandId;
+            oldProduct.SubCategoryId = productWithSpecs.SubCategoryId;
+            if(productWithSpecs.PictureUrl != null)
+                oldProduct.PictureUrl = productWithSpecs.PictureUrl;
+
+            // update specs
+            oldspecifications.Color = productWithSpecs.Color;
+            oldspecifications.Warranty = productWithSpecs.Warranty;
+            oldspecifications.RAM = productWithSpecs.RAM;
+            oldspecifications.Quantity  = productWithSpecs.Quantity;
+            oldspecifications.CPU = productWithSpecs.CPU;
+            oldspecifications.GPU = productWithSpecs.GPU;
+            oldspecifications.Keyboard = productWithSpecs.Keyboard;
+            oldspecifications.Panel = productWithSpecs.Panel;
+            oldspecifications.Touchscreen = productWithSpecs.Touchscreen;
+            oldspecifications.Screen = productWithSpecs.Screen;
+            oldspecifications.Storage = productWithSpecs.Storage;
+
+            await _unitOfWork.Complete();
+
+            return productWithSpecs;
+        }
         //////////////////////////////////////////////////////////////////////////////////////////////
 
     }
