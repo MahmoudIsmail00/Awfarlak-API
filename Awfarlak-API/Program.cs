@@ -37,7 +37,6 @@ namespace Awfarlak_API
 
             await ApplySeeding.ApplySeedingAsync(app);
 
-            app.UseCors("AllowSpecificOrigin");
 
 
             // Configure the HTTP request pipeline.
@@ -47,6 +46,7 @@ namespace Awfarlak_API
                 app.UseSwaggerUI(c =>
                 {
                     c.SwaggerEndpoint("/swagger/v1/swagger.json", "ApiDemo v1");
+
                 });
 
                 app.UseMiddleware<ExceptionMiddleware>();
@@ -55,6 +55,7 @@ namespace Awfarlak_API
 
             app.UseHttpsRedirection();
 
+            app.UseCors("AllowSpecificOrigin");
 
             app.UseAuthentication();
 

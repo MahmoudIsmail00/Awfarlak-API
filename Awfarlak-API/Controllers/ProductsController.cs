@@ -1,4 +1,5 @@
 ﻿using Awfarlak_API.HandleResponses;
+using Awfarlak_API.Helper;
 using Core.Entities;
 using Infrastructure.Specifications;
 using Microsoft.AspNetCore.Mvc;
@@ -11,42 +12,60 @@ namespace Awfarlak_API.Controllers
     public class ProductsController : BaseController
     {
         private readonly IProductService _productService;
-        private IWebHostEnvironment _webHostEnvironment;
+        private readonly ImageHelper _imageHelper;
 
 
         public ProductsController(IProductService productService, IWebHostEnvironment webHostEnvironment)
         {
             _productService = productService;
-            _webHostEnvironment = webHostEnvironment;
+            _imageHelper = new ImageHelper(webHostEnvironment);
         }
 
         [HttpPost]
-        public async Task<ActionResult> CreateProductWithSpecs(ProductWithSpecsCreationDTO productWithSpecs)
+        public async Task<ActionResult> CreateProductWithSpecs([FromForm] ProductWithSpecsCreationDTO productWithSpecs)
         {
-                //var subCategoryName =  _productService.GetProductSubCategoryAsync().Result.Where(x=> x.Id == productWithSpecs.Id);
-                //string RootPath = _webHostEnvironment.WebRootPath;
-                //string filename = productWithSpecs.PictureUrl.Split(@"/")[2];
-                //var upload = Path.Combine(RootPath, $"images/{subCategoryName}");
-                //var ext = Path.GetExtension(productWithSpecs.PictureUrl.Split(@".")[productWithSpecs.PictureUrl.Length - 1]);
-                //using (var fileStream = new FileStream(Path.Combine(upload, filename + ext), FileMode.Create))
-                //{
-                //    file.CopyTo(fileStream);
-                //}
+
+            if (productWithSpecs.ImageFile != null)
+            {
+                productWithSpecs.PictureUrl = await _imageHelper.SaveImageAsync(productWithSpecs.ImageFile);
+            }
+
             await _productService.CreateProductWithSpecs(productWithSpecs);
 
             return Ok();
         }
 
         [HttpPut("{id}")]
-        public async Task<ActionResult<ProductWithSpecsCreationDTO>> UpdateProductWithSpecs([FromRoute]int? id, ProductWithSpecsCreationDTO productWithSpecs)
+        public async Task<ActionResult<ProductWithSpecsCreationDTO>> UpdateProductWithSpecs([FromRoute] int? id, [FromForm] ProductWithSpecsCreationDTO productWithSpecs)
         {
+            var existingProduct = await _productService.GetProductByIdAsync(id);
+            if (existingProduct == null)
+                return NotFound();
+
+
+            if (productWithSpecs.ImageFile != null)
+            {
+                productWithSpecs.PictureUrl = await _imageHelper.UpdateImageAsync(productWithSpecs.ImageFile, existingProduct.PictureUrl);
+            }
+
+
             var prod = await _productService.UpdateProductWithSpecs(id, productWithSpecs);
             return Ok();
         }
 
+
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteProduct(int id)
         {
+
+            var product = await _productService.GetProductByIdAsync(id);
+            if (product == null)
+                return NotFound();
+
+            if (!string.IsNullOrEmpty(product.PictureUrl))
+            {
+                await _imageHelper.DeleteImageAsync(product.PictureUrl);
+            }
             await _productService.DeleteProduct(id);
             return Ok();
         }
@@ -93,6 +112,8 @@ namespace Awfarlak_API.Controllers
 
             return Ok(product);
         }
+
+
         [HttpGet("{id}")]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status404NotFound)]
         [ProducesResponseType(typeof(ApiResponse), StatusCodes.Status200OK)]
@@ -155,7 +176,7 @@ namespace Awfarlak_API.Controllers
         {
             return Ok(await _productService.GetSubCategory(subCategoryId));
         }
-        
+
         [HttpPost]
         public async Task<ActionResult> CreateNewSubCategory(ProductSubCategoryDto subCategory)
         {
@@ -165,14 +186,14 @@ namespace Awfarlak_API.Controllers
             await _productService.CreateSubCategory(subCategory);
             return Ok();
         }
-        
+
         [HttpPut("{id}")]
         public async Task<ActionResult<ProductSubCategoryDto>> UpdateSubCategory([FromRoute] int? id, ProductSubCategoryDto subCategoryDto)
         {
             var prod = await _productService.UpdateSubCategory(id, subCategoryDto);
             return Ok();
         }
-        
+
         [HttpDelete("{id}")]
         public async Task<ActionResult> DeleteSubCategory(int id)
         {

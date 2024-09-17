@@ -29,9 +29,9 @@ namespace Services.Services.ProductService
 
         //Brands
         Task<IReadOnlyList<ProductBrand>> GetProductBrandsAsync();
-        Task<ProductBrand> GetProductBrandById(int? id);    
+        Task<ProductBrand> GetProductBrandById(int? id);
         Task CreateBrand(ProductBrand productBrand);
-        Task<ProductBrand> UpdateBrand(int? id,ProductBrand productBrand);
+        Task<ProductBrand> UpdateBrand(int? id, ProductBrand productBrand);
         Task DeleteBrand(int id);
 
         //Types
@@ -43,7 +43,7 @@ namespace Services.Services.ProductService
         Task<IReadOnlyList<DeliveryMethod>> GetDeliveryMethods();
 
 
-        
+
 
     }
 }

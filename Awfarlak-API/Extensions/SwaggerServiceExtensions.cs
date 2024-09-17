@@ -1,4 +1,5 @@
-﻿using Microsoft.OpenApi.Models;
+﻿using Awfarlak_API.Helper;
+using Microsoft.OpenApi.Models;
 
 namespace Awfarlak_API.Extensions
 {
@@ -12,12 +13,15 @@ namespace Awfarlak_API.Extensions
         {
             services.AddSwaggerGen(c =>
             {
+                c.OperationFilter<SwaggerFileUploadOperationFilter>();
+
                 c.SwaggerDoc("v1", new OpenApiInfo
                 {
                     Title = "ApiDemo",
                     Version = "v1",
                     Description = "API documentation for the Awfarlak project."
                 });
+
 
                 // JWT Bearer Token
                 var jwtSecurityScheme = new OpenApiSecurityScheme

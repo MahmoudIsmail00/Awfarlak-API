@@ -12,6 +12,7 @@ namespace Services.Services.ProductService
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
 
+
         public ProductService(IUnitOfWork unitOfWork, IMapper mapper)
         {
             _unitOfWork = unitOfWork;
@@ -58,7 +59,7 @@ namespace Services.Services.ProductService
 
             return mappedProducts;
         }
-    
+
         public async Task<IReadOnlyList<ProductResultDto>> GetAllProducts()
         {
             var specs = new BaseSpecifications<Product>(x => true);
@@ -156,6 +157,8 @@ namespace Services.Services.ProductService
 
         public async Task CreateProductWithSpecs(ProductWithSpecsCreationDTO productWithSpecs)
         {
+
+
             var product = new Product
             {
                 Name = productWithSpecs.Name,
@@ -166,8 +169,9 @@ namespace Services.Services.ProductService
                 PictureUrl = productWithSpecs.PictureUrl
             };
 
-             await _unitOfWork.Repository<Product>().Add(product);
-             await _unitOfWork.Complete();
+            await _unitOfWork.Repository<Product>().Add(product);
+            await _unitOfWork.Complete();
+
             //var specification = new BaseSpecifications<Product>(x => x.PictureUrl == productWithSpecs.PictureUrl);
 
             var lastProduct = _unitOfWork.Repository<Product>().GetAllAsync().Result.LastOrDefault();
@@ -188,21 +192,21 @@ namespace Services.Services.ProductService
             };
 
             await _unitOfWork.Repository<ProductSpecs>().Add(specs);
-            await  _unitOfWork.Complete();
+            await _unitOfWork.Complete();
         }
 
         public async Task DeleteProduct(int id)
         {
             var product = await _unitOfWork.Repository<Product>().GetByIdAsync(id);
 
-            var specs = new BaseSpecifications<ProductSpecs>(x=>x.productId == id);
+            var specs = new BaseSpecifications<ProductSpecs>(x => x.productId == id);
 
             var productSpecs = await _unitOfWork.Repository<ProductSpecs>().GetEntityWithSpecificationsAsync(specs);
 
-            if(product == null)
+            if (product == null)
                 return;
 
-             _unitOfWork.Repository<ProductSpecs>().Delete(productSpecs);
+            _unitOfWork.Repository<ProductSpecs>().Delete(productSpecs);
             await _unitOfWork.Complete();
 
             _unitOfWork.Repository<Product>().Delete(product);
@@ -223,14 +227,14 @@ namespace Services.Services.ProductService
             oldProduct.Price = productWithSpecs.Price;
             oldProduct.ProductBrandId = productWithSpecs.BrandId;
             oldProduct.SubCategoryId = productWithSpecs.SubCategoryId;
-            if(productWithSpecs.PictureUrl != null)
+            if (productWithSpecs.PictureUrl != null)
                 oldProduct.PictureUrl = productWithSpecs.PictureUrl;
 
             // update specs
             oldspecifications.Color = productWithSpecs.Color;
             oldspecifications.Warranty = productWithSpecs.Warranty;
             oldspecifications.RAM = productWithSpecs.RAM;
-            oldspecifications.Quantity  = productWithSpecs.Quantity;
+            oldspecifications.Quantity = productWithSpecs.Quantity;
             oldspecifications.CPU = productWithSpecs.CPU;
             oldspecifications.GPU = productWithSpecs.GPU;
             oldspecifications.Keyboard = productWithSpecs.Keyboard;
@@ -245,7 +249,7 @@ namespace Services.Services.ProductService
         }
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
-        
+
 
 
         /////////////////////////////// Sub Category //////////////////////////////////////////////////////////////
@@ -273,7 +277,7 @@ namespace Services.Services.ProductService
         }
         public async Task<ProductSubCategoryDto> UpdateSubCategory(int? id, ProductSubCategoryDto subCategory)
         {
-            var oldsub= await _unitOfWork.Repository<SubCategory>().GetByIdAsync(id);
+            var oldsub = await _unitOfWork.Repository<SubCategory>().GetByIdAsync(id);
 
             oldsub.Name = subCategory.Name;
             oldsub.ProductTypeId = subCategory.TypeId;
@@ -304,7 +308,7 @@ namespace Services.Services.ProductService
             => await _unitOfWork.Repository<ProductType>().GetAllAsync();
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
-        
+
 
 
         ////////////////////////////////  Brands  ///////////////////////////////////////////////////////////
@@ -318,7 +322,7 @@ namespace Services.Services.ProductService
 
         public async Task CreateBrand(ProductBrand productBrand)
         {
-            if(productBrand != null)
+            if (productBrand != null)
             {
                 await _unitOfWork.Repository<ProductBrand>().Add(productBrand);
                 await _unitOfWork.Complete();
@@ -343,7 +347,7 @@ namespace Services.Services.ProductService
         {
             var brand = await _unitOfWork.Repository<ProductBrand>().GetByIdAsync(id);
 
-            if(brand != null)
+            if (brand != null)
             {
                 _unitOfWork.Repository<ProductBrand>().Delete(brand);
                 await _unitOfWork.Complete();
@@ -354,7 +358,7 @@ namespace Services.Services.ProductService
             => await _unitOfWork.Repository<ProductBrand>().GetAllAsync();
 
         //////////////////////////////////////////////////////////////////////////////////////////////////////////
-        
+
 
 
         ////////////////////////////////  DeliveryMethods  ///////////////////////////////////////////////////////////

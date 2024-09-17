@@ -1,4 +1,5 @@
 ﻿using Awfarlak_API.HandleResponses;
+using Awfarlak_API.Helper;
 using Infrastructure.BasketRepository;
 using Infrastructure.Interfaces;
 using Infrastructure.Repositories;
@@ -31,6 +32,9 @@ namespace Awfarlak_API.Extensions
             services.AddScoped<IUserService, UserService>();
             services.AddScoped<IPaymentService, PaymentService>();
             services.AddScoped<IOrderService, OrderService>();
+            services.AddScoped<ImageHelper>();
+
+
 
             services.Configure<ApiBehaviorOptions>(options =>
             {
