@@ -1,5 +1,6 @@
 ﻿using Awfarlak_API.HandleResponses;
 using Core.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services.Services.OrderService;
 using Services.Services.OrderService.Dto;
@@ -27,6 +28,7 @@ namespace Awfarlak_API.Controllers
             return Ok(order);
         }
         [HttpGet]
+        [Authorize]
         public async Task<ActionResult<IReadOnlyList<OrderResultDto>>> GetAllOrdersForUserAsync()
         {
             var email = User?.FindFirstValue(ClaimTypes.Email);

@@ -67,6 +67,7 @@ namespace Services.Services.OrderService
                 _unitOfWork.Repository<Order>().Delete(existingOrder);
                 await _paymentService.CreateOrUpdatePaymentIntent(basket.PaymentIntentId);
             }
+         
 
             // Create Order
             var mappedShppingAddress = _mapper.Map<ShippingAddress>(orderDto.ShippingAddress);
@@ -81,7 +82,19 @@ namespace Services.Services.OrderService
             // Delete Basket
             await _basketService.DeleteBasketAsync(orderDto.BasketId);
 
-            var mappedOrder = _mapper.Map<OrderResultDto>(order);
+            var mappedOrder = new OrderResultDto
+            {
+                Id = order.Id,
+                BuyerEmail = order.BuyerEmail,
+                ShippingPrice = order.DeliveryMethod.Price,
+                DeliveryMethod = order.DeliveryMethod.ShortName,
+                SubTotal = order.SubTotal,
+                OrderStatus = order.OrderStatus,
+                OrderDate = order.OrderDate,
+                Total = order.SubTotal,
+                OrderItems = orderItems,
+                ShippingAddress = orderDto.ShippingAddress
+            };
 
             return mappedOrder;
         }
@@ -95,7 +108,53 @@ namespace Services.Services.OrderService
 
             var orders = await _unitOfWork.Repository<Order>().GetAllWithSpecificationsAsync(specs);
 
-            var mappedOrders = _mapper.Map<List<OrderResultDto>>(orders);
+
+
+            var orderItems = new List<OrderItemDto>();
+
+            foreach (var item in orders)
+            {
+
+                foreach (var orderItem in item.OrderItems)
+                {
+                    var newitem = new OrderItemDto
+                    {
+                        ProductName = orderItem.ItemOrdered.ProductName,
+                        PictureUrl = orderItem.ItemOrdered.PictureUrl,
+                        Price = orderItem.Price,
+                        ProductItemId = orderItem.ItemOrdered.ProductItemId,
+                        Quantity = orderItem.Quantity
+                    };
+                    orderItems.Add(newitem);
+                };
+            };
+            List<OrderResultDto> mappedOrders = new List<OrderResultDto>();
+
+            foreach (var order in orders)
+            {
+                var mappedorder = new OrderResultDto
+                {
+                    Id = order.Id,
+                    BuyerEmail = order.BuyerEmail,
+                    DeliveryMethod = order.DeliveryMethod.ShortName,
+                    OrderDate = order.OrderDate,
+                    OrderStatus = order.OrderStatus,
+                    ShippingPrice = order.DeliveryMethod.Price,
+                    SubTotal = order.SubTotal,
+                    Total = order.SubTotal,
+                    OrderItems = orderItems,
+                    ShippingAddress = new AddressDto
+                    {
+                        City = order.ShippingAddress.City,
+                        State = order.ShippingAddress.State,
+                        Street = order.ShippingAddress.Street,
+                        FirstName = order.ShippingAddress.FirstName,
+                        LastName = order.ShippingAddress.LastName,
+                        ZipCode = order.ShippingAddress.ZipCode,
+                    }
+                };
+                mappedOrders.Add(mappedorder);
+            }
 
             return mappedOrders;
         }
