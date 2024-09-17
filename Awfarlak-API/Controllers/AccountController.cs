@@ -46,7 +46,7 @@ namespace Awfarlak_API.Controllers
             return Ok(user);
         }
         [HttpGet]
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         public async Task<ActionResult<IReadOnlyList<UsersToShowDTO>>> GetAllUsers()
         {
             var users = await _userService.GetAllUsers();
