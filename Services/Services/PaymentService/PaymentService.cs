@@ -36,12 +36,12 @@ namespace Services.Services.PaymentService
 
             var shippingPrice = 0m;
 
-            if (basket.DeliveryMethodId.HasValue)
-            {
-                var deliveryMethod = await _unitOfWork.Repository<DeliveryMethod>().GetByIdAsync((int)basket.DeliveryMethodId);
-                shippingPrice = (decimal)deliveryMethod.Price;
-                basket.ShippingPrice = shippingPrice;
-            }
+            //if (basket.DeliveryMethodId.HasValue)
+            //{
+            //    var deliveryMethod = await _unitOfWork.Repository<DeliveryMethod>().GetByIdAsync((int)basket.DeliveryMethodId);
+            //    //shippingPrice = (decimal)deliveryMethod.Price;
+            //    basket.ShippingPrice = shippingPrice;
+            //}
 
             foreach (var item in basket.BasketItems)
             {
