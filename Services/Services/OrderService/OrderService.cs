@@ -108,14 +108,14 @@ namespace Services.Services.OrderService
 
             var orders = await _unitOfWork.Repository<Order>().GetAllWithSpecificationsAsync(specs);
 
+            List<OrderResultDto> mappedOrders = new List<OrderResultDto>();
 
 
-            var orderItems = new List<OrderItemDto>();
-
-            foreach (var item in orders)
+            foreach (var order in orders)
             {
+                var orderItems = new List<OrderItemDto>();
 
-                foreach (var orderItem in item.OrderItems)
+                foreach (var orderItem in order.OrderItems)
                 {
                     var newitem = new OrderItemDto
                     {
@@ -127,11 +127,7 @@ namespace Services.Services.OrderService
                     };
                     orderItems.Add(newitem);
                 };
-            };
-            List<OrderResultDto> mappedOrders = new List<OrderResultDto>();
-
-            foreach (var order in orders)
-            {
+            
                 var mappedorder = new OrderResultDto
                 {
                     Id = order.Id,
