@@ -39,7 +39,7 @@ namespace Services.Services.PaymentService
             //if (basket.DeliveryMethodId.HasValue)
             //{
             //    var deliveryMethod = await _unitOfWork.Repository<DeliveryMethod>().GetByIdAsync((int)basket.DeliveryMethodId);
-            //    //shippingPrice = (decimal)deliveryMethod.Price;
+            //    shippingPrice = (decimal)deliveryMethod.Price;
             //    basket.ShippingPrice = shippingPrice;
             //}
 
