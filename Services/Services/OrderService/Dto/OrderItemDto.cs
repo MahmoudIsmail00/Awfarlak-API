@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Services.Services.OrderService.Dto
+﻿namespace Services.Services.OrderService.Dto
 {
     public class OrderItemDto
     {

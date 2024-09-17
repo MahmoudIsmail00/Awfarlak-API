@@ -40,6 +40,8 @@ namespace Services.Services.OrderService
             foreach (var item in basket.BasketItems)
             {
                 var productItem = await _unitOfWork.Repository<Product>().GetByIdAsync(item.Id);
+                if (productItem == null)
+                    return null;
                 var itemOrdered = new ProductItemOrdered(productItem.Id, productItem.Name, productItem.PictureUrl);
                 var orderItme = new OrderItem(productItem.Price, item.Quantity, itemOrdered);
 
@@ -50,6 +52,8 @@ namespace Services.Services.OrderService
             // Get delivery method 
             var deliveryMethod = await _unitOfWork.Repository<DeliveryMethod>().GetByIdAsync(orderDto.DeliveryMethodId);
 
+            if (deliveryMethod == null)
+                return null;
             // Calculate SubTotal
             var subTotal = orderItems.Sum(item => item.Price * item.Quantity);
 
@@ -58,7 +62,7 @@ namespace Services.Services.OrderService
 
             var existingOrder = await _unitOfWork.Repository<Order>().GetEntityWithSpecificationsAsync(specs);
 
-            if(existingOrder != null)
+            if (existingOrder != null)
             {
                 _unitOfWork.Repository<Order>().Delete(existingOrder);
                 await _paymentService.CreateOrUpdatePaymentIntent(basket.PaymentIntentId);
