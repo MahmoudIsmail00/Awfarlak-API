@@ -36,7 +36,6 @@ namespace Awfarlak_API.Controllers
         }
 
         [HttpPost]
-
         public async Task<ActionResult<UserDto>> Login(LoginDto loginDto)
         {
             var user = await _userService.Login(loginDto);
@@ -46,7 +45,33 @@ namespace Awfarlak_API.Controllers
 
             return Ok(user);
         }
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult<IReadOnlyList<UsersToShowDTO>>> GetAllUsers()
+        {
+            var users = await _userService.GetAllUsers();
+            return Ok(users);
+        }
 
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult<IReadOnlyList<IdentityRole>>> GetAllRoles()
+        {
+            var roles = await _userService.GetAllRoles();
+            return Ok(roles);
+        }
+
+
+        [HttpGet("{userId}")]
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult<IReadOnlyList<UsersToShowDTO>>> GetUserData(string userId)
+        {
+            var user = await _userService.GetUserData(userId);
+            if (user == null)
+                return BadRequest();
+
+            return Ok(user);
+        }
 
         [HttpGet]
         [Authorize(Roles = "Admin")]
@@ -113,6 +138,7 @@ namespace Awfarlak_API.Controllers
                 return Unauthorized(new ApiException(401, "User is not authenticated"));
 
             var user = await _userManager.FindByEmailAsync(email);
+            var roles = await _userManager.GetRolesAsync(user);
 
             if (user == null)
                 return NotFound(new ApiException(404, "User not found"));
@@ -121,6 +147,7 @@ namespace Awfarlak_API.Controllers
             {
                 DisplayName = user.DisplayName,
                 Email = user.Email,
+                Roles = roles.ToList()
             };
         }
     }

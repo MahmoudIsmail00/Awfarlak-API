@@ -84,7 +84,6 @@ namespace Services.Services.UserService
             };
         }
 
-
         public async Task<UserDto> GetCurrentUser()
         {
             var userId = _userManager.GetUserId(ClaimsPrincipal.Current);
@@ -108,7 +107,6 @@ namespace Services.Services.UserService
                 Roles = roles.ToList()
             };
         }
-
 
         public async Task<AddressDto> GetUserAddress(string userId)
         {
@@ -195,5 +193,53 @@ namespace Services.Services.UserService
             return true;
         }
 
+        public async Task<IReadOnlyList<UsersToShowDTO>> GetAllUsers()
+        {
+            var newUsersDto = new List<UsersToShowDTO>();
+
+            var users = _context.Users.ToList();
+
+
+            foreach (var user in users) 
+            {
+                var roles = await _userManager.GetRolesAsync(user);
+
+                var newUser = new UsersToShowDTO
+                {
+                    userId = user.Id,
+                    DisplayName = user.DisplayName,
+                    Email = user.Email,
+                    Roles = roles.ToList()
+                };
+                newUsersDto.Add(newUser);
+            }
+            return newUsersDto;
+        }
+
+        public async Task<IReadOnlyList<IdentityRole>> GetAllRoles()
+        {
+            var roles = await _context.Roles.ToListAsync();
+
+            return roles;
+        }
+
+        public async Task<UsersToShowDTO> GetUserData(string userId)
+        {
+            var user = _context.Users.Find(userId);
+
+            if (user == null)
+                return null;
+
+            var roles = await _userManager.GetRolesAsync(user);
+
+            var userData = new UsersToShowDTO
+            {
+                userId = user.Id,
+                DisplayName = user.DisplayName,
+                Email = user.Email,
+                Roles = roles.ToList(),
+            };
+            return userData;
+        }
     }
 }
