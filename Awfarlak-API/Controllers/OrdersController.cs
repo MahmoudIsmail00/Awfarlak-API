@@ -17,6 +17,19 @@ namespace Awfarlak_API.Controllers
         {
             _orderService = orderService;
         }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public async Task<ActionResult<IReadOnlyList<OrderResultDto>>> GetAllOrders()
+        {
+            var orders = await _orderService.GetAllOrders();
+
+            if (orders == null)
+                return NotFound();
+
+            return Ok(orders);
+        }
+
         [HttpPost]
         public async Task<ActionResult<OrderResultDto>> CreateOrderAsync(OrderDto orderDto)
         {
@@ -27,6 +40,7 @@ namespace Awfarlak_API.Controllers
 
             return Ok(order);
         }
+
         [HttpGet]
         [Authorize]
         public async Task<ActionResult<IReadOnlyList<OrderResultDto>>> GetAllOrdersForUserAsync()

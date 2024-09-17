@@ -102,6 +102,59 @@ namespace Services.Services.OrderService
         public async Task<IReadOnlyList<DeliveryMethod>> GetAllDeliveryMethodsAsync()
             => await _unitOfWork.Repository<DeliveryMethod>().GetAllAsync();
 
+        public async Task<IReadOnlyList<OrderResultDto>> GetAllOrders()
+        {
+            var orders = await _unitOfWork.Repository<Order>().GetAllAsync();
+
+
+            List<OrderResultDto> mappedOrders = new List<OrderResultDto>();
+
+            foreach (var order in orders)
+            {
+                var orderitemsfromdb = await _unitOfWork.Repository<OrderItem>().GetAllWithSpecificationsAsync(new BaseSpecifications<OrderItem>(x=>x.OrderId == order.Id));
+
+                var orderItems = new List<OrderItemDto>();
+
+                foreach (var orderItem in orderitemsfromdb)
+                {
+                    var newitem = new OrderItemDto
+                    {
+                        ProductName = orderItem.ItemOrdered.ProductName,
+                        PictureUrl = orderItem.ItemOrdered.PictureUrl,
+                        Price = orderItem.Price,
+                        ProductItemId = orderItem.ItemOrdered.ProductItemId,
+                        Quantity = orderItem.Quantity
+                    };
+                    orderItems.Add(newitem);
+                };
+
+                var mappedorder = new OrderResultDto
+                {
+                    Id = order.Id,
+                    BuyerEmail = order.BuyerEmail,
+                    DeliveryMethod = "Free",
+                    OrderDate = order.OrderDate,
+                    OrderStatus = order.OrderStatus,
+                    ShippingPrice = 0,
+                    SubTotal = order.SubTotal,
+                    Total = order.SubTotal,
+                    OrderItems = orderItems,
+                    ShippingAddress = new AddressDto
+                    {
+                        City = order.ShippingAddress.City,
+                        State = order.ShippingAddress.State,
+                        Street = order.ShippingAddress.Street,
+                        FirstName = order.ShippingAddress.FirstName,
+                        LastName = order.ShippingAddress.LastName,
+                        ZipCode = order.ShippingAddress.ZipCode,
+                    }
+                };
+                mappedOrders.Add(mappedorder);
+            }
+            return mappedOrders;
+
+        }
+
         public async Task<IReadOnlyList<OrderResultDto>> GetAllOrdersForUserAsync(string buyerEmail)
         {
             var specs = new OrderWithItemsSpecification(buyerEmail);
