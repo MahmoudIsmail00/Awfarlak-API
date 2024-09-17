@@ -17,6 +17,6 @@ namespace Services.Services.UserService
         Task<AddressDto> GetUserAddress(string userId);
         Task<bool> UpdateUserRole(UpdateUserRoleDto updateUserRoleDto);
         Task<UserDto> GetCurrentUser();
-
+        Task<UserDto> ChangeDetails(string userId, UserChangePasswordDto userToChange);
     }
 }

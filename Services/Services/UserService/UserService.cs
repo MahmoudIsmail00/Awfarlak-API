@@ -138,7 +138,7 @@ namespace Services.Services.UserService
             var address = await _context.Addresses.FirstOrDefaultAsync(a => a.AppUserId == userId);
             if (address == null)
             {
-                address = new Address
+                address = new Core.IdentityEntities.Address
                 {
                     AppUserId = userId,
                     FirstName = addressDto.FirstName ?? "Default FirstName",
@@ -240,6 +240,37 @@ namespace Services.Services.UserService
                 Roles = roles.ToList(),
             };
             return userData;
+        }
+
+        public async Task<UserDto> ChangeDetails(string userId, UserChangePasswordDto userToChange)
+        {
+            var user = _context.Users.Find(userId);
+
+
+            var res = await _userManager.CheckPasswordAsync(user, userToChange.oldPassword);
+
+            if (res)
+            {
+                var result =  _userManager.ChangePasswordAsync(user, userToChange.oldPassword, userToChange.newPassword);
+
+                user.DisplayName = userToChange.displayName;
+                user.Email = userToChange.email;
+
+
+                _context.SaveChanges();
+
+                var UserDto = new UserDto
+                {
+                    DisplayName = user.DisplayName,
+                    Email = user.Email,
+                    Roles = _userManager.GetRolesAsync(user).Result.ToList(),
+                    Token = await _tokenService.CreateTokenAsync(user)
+                };
+
+                return UserDto;
+            }
+
+            return null;
         }
     }
 }

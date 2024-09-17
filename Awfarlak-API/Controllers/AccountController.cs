@@ -63,7 +63,7 @@ namespace Awfarlak_API.Controllers
 
 
         [HttpGet("{userId}")]
-        [Authorize(Roles = "Admin")]
+        [Authorize]
         public async Task<ActionResult<IReadOnlyList<UsersToShowDTO>>> GetUserData(string userId)
         {
             var user = await _userService.GetUserData(userId);
@@ -91,8 +91,6 @@ namespace Awfarlak_API.Controllers
 
             return Ok("User role updated successfully");
         }
-
-
 
         [HttpGet]
         [Authorize]
@@ -149,6 +147,19 @@ namespace Awfarlak_API.Controllers
                 Email = user.Email,
                 Roles = roles.ToList()
             };
+        }
+
+        [HttpPost("{userId}")]
+        [Authorize]
+        public async Task<ActionResult<UserDto>> ChangeDetails(string userId,UserChangePasswordDto userToChange)
+        {
+            var user = _userService.ChangeDetails(userId, userToChange);
+
+            if(user == null)
+                return BadRequest();
+
+
+            return Ok(user);
         }
     }
 }
