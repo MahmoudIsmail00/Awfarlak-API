@@ -2,6 +2,7 @@
 using Core.Entities;
 using Infrastructure.Interfaces;
 using Infrastructure.Specifications;
+using Microsoft.Extensions.Configuration;
 using Services.Helpers;
 using Services.Services.ProductService.Dto;
 
@@ -11,12 +12,13 @@ namespace Services.Services.ProductService
     {
         private readonly IUnitOfWork _unitOfWork;
         private readonly IMapper _mapper;
+        private readonly IConfiguration _configuration;
 
-
-        public ProductService(IUnitOfWork unitOfWork, IMapper mapper)
+        public ProductService(IUnitOfWork unitOfWork, IMapper mapper,IConfiguration configuration)
         {
             _unitOfWork = unitOfWork;
             _mapper = mapper;
+            _configuration = configuration;
         }
 
         //////////////////////////////////////// products ///////////////////////////////////////////////////////
@@ -90,7 +92,7 @@ namespace Services.Services.ProductService
                 Name = product.Name,
                 Description = product.Description,
                 Price = product.Price,
-                PictureUrl = product.PictureUrl,
+                PictureUrl = _configuration["BaseUrl"] + product.PictureUrl,
                 ProductSubCategoryName = product.SubCategory.Name,
                 ProductBrandName = product.ProductBrand.Name,
                 Storage = productSpecs.Storage,
@@ -135,7 +137,7 @@ namespace Services.Services.ProductService
                     Name = product.Name,
                     Description = product.Description,
                     Price = product.Price,
-                    PictureUrl = product.PictureUrl,
+                    PictureUrl = _configuration["BaseUrl"] + product.PictureUrl,
                     ProductSubCategoryName = product.SubCategory.Name,
                     ProductBrandName = product.ProductBrand.Name,
                     Storage = prods.Storage,
@@ -228,7 +230,7 @@ namespace Services.Services.ProductService
             oldProduct.ProductBrandId = productWithSpecs.BrandId;
             oldProduct.SubCategoryId = productWithSpecs.SubCategoryId;
             if (productWithSpecs.PictureUrl != null)
-                oldProduct.PictureUrl = productWithSpecs.PictureUrl;
+                oldProduct.PictureUrl =  productWithSpecs.PictureUrl;
 
             // update specs
             oldspecifications.Color = productWithSpecs.Color;
