@@ -18,7 +18,7 @@ namespace Awfarlak_API
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowSpecificOrigin",
-                    builder => builder.WithOrigins("http://localhost:4200")
+                    builder => builder.AllowAnyOrigin()
                                       .AllowAnyHeader()
                                       .AllowAnyMethod());
             });
@@ -40,20 +40,18 @@ namespace Awfarlak_API
 
 
             // Configure the HTTP request pipeline.
-            if (app.Environment.IsDevelopment())
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
             {
-                app.UseSwagger();
-                app.UseSwaggerUI(c =>
-                {
-                    c.SwaggerEndpoint("/swagger/v1/swagger.json", "ApiDemo v1");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "ApiDemo v1");
 
-                });
+            });
 
-                app.UseMiddleware<ExceptionMiddleware>();
-            }
+            app.UseMiddleware<ExceptionMiddleware>();
+          
             app.UseStaticFiles();
 
-            app.UseHttpsRedirection();
+            //app.UseHttpsRedirection();
 
             app.UseCors("AllowSpecificOrigin");
 
