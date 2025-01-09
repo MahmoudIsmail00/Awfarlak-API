@@ -3,9 +3,9 @@ using Core.IdentityEntities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Services.Services.OrderService.Dto;
-using Services.Services.UserService;
-using Services.Services.UserService.Dto;
+using Application.Services.OrderService.Dto;
+using Application.Services.UserService;
+using Application.Services.UserService.Dto;
 using System.Security.Claims;
 
 namespace Awfarlak_API.Controllers

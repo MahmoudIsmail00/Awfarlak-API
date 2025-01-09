@@ -1,10 +1,10 @@
-﻿using AutoMapper;
-using Infrastructure.BasketRepository;
-using Infrastructure.BasketRepository.BasketEntities;
-using Services.Services.BasketService.Dto;
+﻿using Application.Services.BasketService.Dto;
+using AutoMapper;
+using Core.Entities.BasketEntities;
+using Core.Interfaces;
 
 
-namespace Services.Services.BasketService
+namespace Application.Services.BasketService
 {
     public class BasketService : IBasketService
     {
@@ -24,7 +24,7 @@ namespace Services.Services.BasketService
         {
             var basket = await _basketRepository.GetBasketAsync(basketId);
 
-            if(basket is null)
+            if (basket is null)
                 return new CustomerBasketDto();
 
             var mappedBasket = _mapper.Map<CustomerBasketDto>(basket);

@@ -1,20 +1,18 @@
-﻿using Awfarlak_API.HandleResponses;
+﻿using Application.Services.BasketService;
+using Application.Services.BasketService.Dto;
+using Application.Services.CacheService;
+using Application.Services.OrderService;
+using Application.Services.OrderService.Dto;
+using Application.Services.PaymentService;
+using Application.Services.ProductService;
+using Application.Services.ProductService.Dto;
+using Application.Services.TokenService;
+using Application.Services.UserService;
+using Awfarlak_API.HandleResponses;
 using Awfarlak_API.Helper;
-using Infrastructure.BasketRepository;
-using Infrastructure.Interfaces;
+using Core.Interfaces;
 using Infrastructure.Repositories;
 using Microsoft.AspNetCore.Mvc;
-using Services.Services.BasketService;
-using Services.Services.BasketService.Dto;
-using Services.Services.CacheService;
-using Services.Services.OrderService;
-using Services.Services.OrderService.Dto;
-using Services.Services.PaymentService;
-using Services.Services.ProductService;
-using Services.Services.ProductService.Dto;
-using Services.Services.TokenService;
-using Services.Services.UserService;
-
 namespace Awfarlak_API.Extensions
 {
     public static class ApplicationSerivceExtensions
@@ -54,7 +52,7 @@ namespace Awfarlak_API.Extensions
                 };
             });
 
-            //builder.Services.AddAutoMapper(x => x.AddProfile(new ProductProfile()));
+            //builder.Application.AddAutoMapper(x => x.AddProfile(new ProductProfile()));
             services.AddAutoMapper(typeof(ProductProfile));
             services.AddAutoMapper(typeof(BasketProfile));
             services.AddAutoMapper(typeof(OrderProfile));

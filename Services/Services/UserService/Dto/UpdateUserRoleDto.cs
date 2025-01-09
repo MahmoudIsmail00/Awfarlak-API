@@ -1,4 +1,4 @@
-﻿namespace Services.Services.UserService.Dto
+﻿namespace Application.Services.UserService.Dto
 {
     public class UpdateUserRoleDto
     {

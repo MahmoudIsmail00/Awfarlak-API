@@ -1,7 +1,7 @@
 ﻿
-using Services.Services.OrderService.Dto;
+using Application.Services.OrderService.Dto;
 
-namespace Services.Services.UserService.Dto
+namespace Application.Services.UserService.Dto
 {
     public class UserDto
     {

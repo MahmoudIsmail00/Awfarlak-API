@@ -1,11 +1,9 @@
-﻿using Awfarlak_API.HandleResponses;
+﻿using Application.Services.PaymentService;
+using Awfarlak_API.HandleResponses;
+using Core.Entities.BasketEntities;
 using Core.Entities.OrderEntities;
-using Infrastructure.BasketRepository.BasketEntities;
 using Microsoft.AspNetCore.Authorization;
-
 using Microsoft.AspNetCore.Mvc;
-
-using Services.Services.PaymentService;
 using Stripe;
 
 namespace Awfarlak_API.Controllers

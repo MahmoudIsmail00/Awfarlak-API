@@ -1,14 +1,12 @@
-﻿using Core.Entities;
+﻿using Core.Entities.BasketEntities;
 using Core.Entities.OrderEntities;
-using Infrastructure.BasketRepository;
-using Infrastructure.BasketRepository.BasketEntities;
-using Infrastructure.Interfaces;
-using Infrastructure.Specifications;
+using Core.Interfaces;
+using Core.Specifications;
 using Microsoft.Extensions.Configuration;
 using Stripe;
 using Product = Core.Entities.Product;
 
-namespace Services.Services.PaymentService
+namespace Application.Services.PaymentService
 {
     public class PaymentService : IPaymentService
     {
@@ -46,7 +44,7 @@ namespace Services.Services.PaymentService
             foreach (var item in basket.BasketItems)
             {
                 var productItem = await _unitOfWork.Repository<Product>().GetByIdAsync(item.Id);
-                
+
                 if (item.Price != productItem.Price)
                     item.Price = (decimal)productItem.Price;
             }

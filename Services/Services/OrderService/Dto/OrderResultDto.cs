@@ -1,6 +1,6 @@
 ﻿using Core.Entities.OrderEntities;
 
-namespace Services.Services.OrderService.Dto
+namespace Application.Services.OrderService.Dto
 {
     public class OrderResultDto
     {

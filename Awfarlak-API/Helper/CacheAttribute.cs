@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Filters;
-using Services.Services.CacheService;
+using Application.Services.CacheService;
 using System.Text;
 
 namespace Awfarlak_API.Helper

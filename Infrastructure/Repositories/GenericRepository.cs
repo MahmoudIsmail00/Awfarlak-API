@@ -1,7 +1,6 @@
-﻿using Core;
-using Core.Entities;
-using Infrastructure.Interfaces;
-using Infrastructure.Specifications;
+﻿using Core.Entities;
+using Core.Interfaces;
+using Core.Specifications;
 using Microsoft.EntityFrameworkCore;
 
 namespace Infrastructure.Repositories
@@ -18,7 +17,7 @@ namespace Infrastructure.Repositories
             => await _context.Set<T>().AddAsync(entity);
 
         public void Delete(T entity)
-            =>  _context.Set<T>().Remove(entity);
+            => _context.Set<T>().Remove(entity);
 
         public async Task<IReadOnlyList<T>> GetAllAsync()
             => await _context.Set<T>().ToListAsync();

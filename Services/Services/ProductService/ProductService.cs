@@ -1,11 +1,11 @@
-﻿using AutoMapper;
+﻿using Application.Helpers;
+using Application.Services.ProductService.Dto;
+using AutoMapper;
 using Core.Entities;
-using Infrastructure.Interfaces;
-using Infrastructure.Specifications;
-using Services.Helpers;
-using Services.Services.ProductService.Dto;
+using Core.Interfaces;
+using Core.Specifications;
 
-namespace Services.Services.ProductService
+namespace Application.Services.ProductService
 {
     public class ProductService : IProductService
     {

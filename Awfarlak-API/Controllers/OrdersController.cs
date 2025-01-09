@@ -2,8 +2,8 @@
 using Core.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
-using Services.Services.OrderService;
-using Services.Services.OrderService.Dto;
+using Application.Services.OrderService;
+using Application.Services.OrderService.Dto;
 using System.Security.Claims;
 
 namespace Awfarlak_API.Controllers

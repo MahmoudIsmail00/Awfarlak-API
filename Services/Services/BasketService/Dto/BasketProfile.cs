@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using Infrastructure.BasketRepository.BasketEntities;
+using Core.Entities.BasketEntities;
 
-namespace Services.Services.BasketService.Dto
+namespace Application.Services.BasketService.Dto
 {
     public class BasketProfile : Profile
     {

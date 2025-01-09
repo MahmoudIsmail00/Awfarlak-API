@@ -1,8 +1,8 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Services.Services.OrderService.Dto;
-using Services.Services.UserService.Dto;
+﻿using Application.Services.OrderService.Dto;
+using Application.Services.UserService.Dto;
+using Microsoft.AspNetCore.Identity;
 
-namespace Services.Services.UserService
+namespace Application.Services.UserService
 {
     public interface IUserService
     {
@@ -11,7 +11,7 @@ namespace Services.Services.UserService
 
         Task<IReadOnlyList<UsersToShowDTO>> GetAllUsers();
         Task<IReadOnlyList<IdentityRole>> GetAllRoles();
-        Task<UsersToShowDTO>  GetUserData(string userId);
+        Task<UsersToShowDTO> GetUserData(string userId);
 
         Task<AddressDto> UpdateUserAddress(string userId, AddressDto addressDto);
         Task<AddressDto> GetUserAddress(string userId);

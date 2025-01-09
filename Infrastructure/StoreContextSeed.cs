@@ -1,9 +1,9 @@
-﻿using Core;
-using Core.Entities;
+﻿using Core.Entities;
+using Infrastructure;
 using Microsoft.Extensions.Logging;
 using System.Text.Json;
 
-namespace Infrastructure
+namespace Core
 {
     public class StoreContextSeed
     {
@@ -13,7 +13,7 @@ namespace Infrastructure
             {
                 if (context.ProductBrands != null && !context.ProductBrands.Any())
                 {
-                    var brandsData = File.ReadAllText("../Infrastructure/SeedData/brands.json");
+                    var brandsData = File.ReadAllText("../Core/SeedData/brands.json");
                     var brands = JsonSerializer.Deserialize<List<ProductBrand>>(brandsData);
 
                     if (brands is not null)
@@ -26,7 +26,7 @@ namespace Infrastructure
                 }
                 if (context.ProductTypes != null && !context.ProductTypes.Any())
                 {
-                    var typesData = File.ReadAllText("../Infrastructure/SeedData/types.json");
+                    var typesData = File.ReadAllText("../Core/SeedData/types.json");
                     var types = JsonSerializer.Deserialize<List<ProductType>>(typesData);
 
                     if (types is not null)
@@ -39,7 +39,7 @@ namespace Infrastructure
                 }
                 if (context.SubCategories != null && !context.SubCategories.Any())
                 {
-                    var typesData = File.ReadAllText("../Infrastructure/SeedData/subCategories.json");
+                    var typesData = File.ReadAllText("../Core/SeedData/subCategories.json");
                     var types = JsonSerializer.Deserialize<List<SubCategory>>(typesData);
 
                     if (types is not null)
@@ -52,7 +52,7 @@ namespace Infrastructure
                 }
                 if (context.Products != null && !context.Products.Any())
                 {
-                    var productsData = File.ReadAllText("../Infrastructure/SeedData/products.json");
+                    var productsData = File.ReadAllText("../Core/SeedData/products.json");
                     var products = JsonSerializer.Deserialize<List<Product>>(productsData);
 
                     if (products is not null)
@@ -65,7 +65,7 @@ namespace Infrastructure
                 }
                 if (context.DeliveryMethods != null && !context.DeliveryMethods.Any())
                 {
-                    var deliveryMethodsData = File.ReadAllText("../Infrastructure/SeedData/delivery.json");
+                    var deliveryMethodsData = File.ReadAllText("../Core/SeedData/delivery.json");
                     var deliveryMethods = JsonSerializer.Deserialize<List<DeliveryMethod>>(deliveryMethodsData);
 
                     if (deliveryMethods is not null)
@@ -78,7 +78,7 @@ namespace Infrastructure
                 }
                 if (context.ProductSpecs != null && !context.ProductSpecs.Any())
                 {
-                    var productSpecsData = File.ReadAllText("../Infrastructure/SeedData/Specs.json");
+                    var productSpecsData = File.ReadAllText("../Core/SeedData/Specs.json");
                     var productSpecss = JsonSerializer.Deserialize<List<ProductSpecs>>(productSpecsData);
 
                     if (productSpecss is not null)

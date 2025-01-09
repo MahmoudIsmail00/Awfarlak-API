@@ -1,13 +1,13 @@
 ﻿using AutoMapper;
 using Core.Entities;
 using Core.Entities.OrderEntities;
-using Infrastructure.Interfaces;
-using Infrastructure.Specifications;
-using Services.Services.BasketService;
-using Services.Services.OrderService.Dto;
-using Services.Services.PaymentService;
+using Core.Interfaces;
+using Core.Specifications;
+using Application.Services.BasketService;
+using Application.Services.OrderService.Dto;
+using Application.Services.PaymentService;
 
-namespace Services.Services.OrderService
+namespace Application.Services.OrderService
 {
     public class OrderService : IOrderService
     {

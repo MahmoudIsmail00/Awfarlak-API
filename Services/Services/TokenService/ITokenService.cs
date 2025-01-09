@@ -1,6 +1,6 @@
 ﻿using Core.IdentityEntities;
 
-namespace Services.Services.TokenService
+namespace Application.Services.TokenService
 {
     public interface ITokenService
     {

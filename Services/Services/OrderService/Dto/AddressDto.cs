@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Services.Services.OrderService.Dto
+namespace Application.Services.OrderService.Dto
 {
     public class AddressDto
     {

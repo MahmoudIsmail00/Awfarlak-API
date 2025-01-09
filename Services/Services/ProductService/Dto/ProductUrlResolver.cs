@@ -7,7 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Services.Services.ProductService.Dto
+namespace Application.Services.ProductService.Dto
 {
     public class ProductUrlResolver : IValueResolver<Product, ProductResultDto, string>
     {

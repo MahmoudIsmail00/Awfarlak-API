@@ -1,6 +1,6 @@
-﻿using Services.Services.BasketService.Dto;
+﻿using Application.Services.BasketService.Dto;
 
-namespace Services.Services.BasketService
+namespace Application.Services.BasketService
 {
     public interface IBasketService
     {

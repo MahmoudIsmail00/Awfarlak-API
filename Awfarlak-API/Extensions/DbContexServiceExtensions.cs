@@ -1,4 +1,4 @@
-﻿using Core;
+﻿using Infrastructure;
 using Microsoft.EntityFrameworkCore;
 using StackExchange.Redis;
 

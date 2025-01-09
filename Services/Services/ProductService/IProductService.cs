@@ -1,9 +1,9 @@
 ﻿using Core.Entities;
-using Infrastructure.Specifications;
-using Services.Helpers;
-using Services.Services.ProductService.Dto;
+using Core.Specifications;
+using Application.Helpers;
+using Application.Services.ProductService.Dto;
 
-namespace Services.Services.ProductService
+namespace Application.Services.ProductService
 {
     public interface IProductService
     {

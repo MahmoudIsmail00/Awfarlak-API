@@ -1,11 +1,11 @@
 ﻿using Awfarlak_API.HandleResponses;
 using Awfarlak_API.Helper;
 using Core.Entities;
-using Infrastructure.Specifications;
+using Core.Specifications;
 using Microsoft.AspNetCore.Mvc;
-using Services.Helpers;
-using Services.Services.ProductService;
-using Services.Services.ProductService.Dto;
+using Application.Helpers;
+using Application.Services.ProductService;
+using Application.Services.ProductService.Dto;
 
 namespace Awfarlak_API.Controllers
 {

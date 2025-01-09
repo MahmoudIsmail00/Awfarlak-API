@@ -1,7 +1,7 @@
 ﻿using Core.Entities;
-using Services.Services.OrderService.Dto;
+using Application.Services.OrderService.Dto;
 
-namespace Services.Services.OrderService
+namespace Application.Services.OrderService
 {
     public interface IOrderService
     {

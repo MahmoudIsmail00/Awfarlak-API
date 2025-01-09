@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace Services.Services.BasketService.Dto
+namespace Application.Services.BasketService.Dto
 {
     public class CustomerBasketDto
     {

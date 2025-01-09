@@ -2,7 +2,7 @@
 using Core.Entities.OrderEntities;
 using Core.IdentityEntities;
 
-namespace Services.Services.OrderService.Dto
+namespace Application.Services.OrderService.Dto
 {
     public class OrderProfile : Profile
     {

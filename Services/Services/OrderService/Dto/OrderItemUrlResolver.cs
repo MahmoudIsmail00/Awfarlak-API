@@ -2,7 +2,7 @@
 using Core.Entities.OrderEntities;
 using Microsoft.Extensions.Configuration;
 
-namespace Services.Services.OrderService.Dto
+namespace Application.Services.OrderService.Dto
 {
     public class OrderItemUrlResolver : IValueResolver<OrderItem, OrderItemDto, string>
     {

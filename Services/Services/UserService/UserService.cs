@@ -1,13 +1,13 @@
-﻿using Core;
+﻿using Application.Services.OrderService.Dto;
+using Application.Services.TokenService;
+using Application.Services.UserService.Dto;
 using Core.IdentityEntities;
+using Infrastructure;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Services.Services.OrderService.Dto;
-using Services.Services.TokenService;
-using Services.Services.UserService.Dto;
 using System.Security.Claims;
 
-namespace Services.Services.UserService
+namespace Application.Services.UserService
 {
     public class UserService : IUserService
     {
@@ -200,7 +200,7 @@ namespace Services.Services.UserService
             var users = _context.Users.ToList();
 
 
-            foreach (var user in users) 
+            foreach (var user in users)
             {
                 var roles = await _userManager.GetRolesAsync(user);
 
@@ -251,7 +251,7 @@ namespace Services.Services.UserService
 
             if (res)
             {
-                var result =  _userManager.ChangePasswordAsync(user, userToChange.oldPassword, userToChange.newPassword);
+                var result = _userManager.ChangePasswordAsync(user, userToChange.oldPassword, userToChange.newPassword);
 
                 user.DisplayName = userToChange.displayName;
                 user.Email = userToChange.email;

@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
 
-namespace Services.Services.ProductService.Dto
+namespace Application.Services.ProductService.Dto
 {
     public class ProductWithSpecsCreationDTO
     {

@@ -1,12 +1,6 @@
-﻿using Core;
-using Core.Entities;
-using Infrastructure.Interfaces;
-using System;
+﻿using Core.Entities;
+using Core.Interfaces;
 using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Infrastructure.Repositories
 {
@@ -27,7 +21,7 @@ namespace Infrastructure.Repositories
 
         public IGenericRepository<TEntity> Repository<TEntity>() where TEntity : BaseEntity
         {
-            if(_repositories is null)            
+            if (_repositories is null)
                 _repositories = new Hashtable();
 
             var type = typeof(TEntity).Name;

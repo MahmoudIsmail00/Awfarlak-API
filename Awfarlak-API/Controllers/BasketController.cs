@@ -1,6 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Services.Services.BasketService;
-using Services.Services.BasketService.Dto;
+using Application.Services.BasketService;
+using Application.Services.BasketService.Dto;
 
 namespace Awfarlak_API.Controllers
 {
